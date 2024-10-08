@@ -5,6 +5,8 @@
 // 给定两个整数数组 gas 和 cost ，如果你可以按顺序绕环路行驶一周，则返回出发时加油站的编号，否则返回 -1 。如果存在解，则 保证 它是 唯一 的。
 
 function canCompleteCircuit(gas: number[], cost: number[]): number {
+  const diff = gas.map((item, index) => item - cost[index]);
+  console.log(diff);
   return -1;
 }
 
