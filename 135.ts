@@ -20,19 +20,15 @@ function candy(ratings: number[]): number {
     const next = ratings[index + 1];
     let value = 0;
     if (curr > prev && curr <= next) value = k(index - 1) + 1;
-    else if (curr > prev && prev >= next) value = k(index - 1) + 1;
     else if (curr > next && curr <= prev) value = k(index + 1) + 1;
-    else if (curr > next && next >= prev) value = k(index + 1) + 1;
+    else if (curr > prev && curr > next) value = Math.max(k(index - 1), k(index + 1)) + 1;
     else value = 1;
     results[index] = value;
     return value;
   };
-  for (let i = 1; i < ratings.length - 1; ++i) {
-    k(i);
-  }
+  for (let i = 1; i < ratings.length - 1; ++i) k(i);
   let sum = 0;
   results = results.slice(1, results.length - 1);
-  console.log(results);
   results.forEach((num) => sum += num);
   return sum;
 }
