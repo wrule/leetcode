@@ -12,7 +12,7 @@
 // [*, \, /, /, \, /, /, /, -, \, /]
 function candy(ratings: number[]): number {
   ratings = [Infinity, ...ratings, Infinity];
-  const results = Array(ratings.length).fill(0);
+  let results = Array(ratings.length).fill(0);
   const k: (index: number) => number = (index) => {
     if (results[index]) return results[index];
     const curr = ratings[index];
@@ -31,8 +31,10 @@ function candy(ratings: number[]): number {
     k(i);
   }
   let sum = 0;
+  results = results.slice(1, results.length - 1);
+  console.log(results);
   results.forEach((num) => sum += num);
   return sum;
 }
 
-console.log(candy([3, 1, 2, 8, 2, 3, 5, 6, 6, 1, 2]));
+console.log(candy([0,1,2,5,3,2,7]));
