@@ -9,6 +9,7 @@ function canCompleteCircuit(gas: number[], cost: number[]): number {
   diff = diff.concat(diff);
   for (let i = 0; i < gas.length; ++i) {
     if (diff[i] < 0) continue;
+    if (i >= 1 && diff[i] <= diff[i - 1]) continue;
     let sum = 0;
     for (let j = i; j < i + gas.length; ++j) {
       sum += diff[j];
