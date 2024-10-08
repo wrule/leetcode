@@ -9,7 +9,7 @@
 
 
 function candy(ratings: number[]): number {
-  let sum = 0;
+  
   return 0;
 }
 
