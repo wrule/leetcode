@@ -19,15 +19,11 @@ function candy(ratings: number[]): number {
     const prev = ratings[index - 1];
     const next = ratings[index + 1];
     let value = 0;
-    if (curr > prev && curr <= next || curr > prev && prev >= next) {
-      value = k(index - 1) + 1;
-    }
-    else if (curr > next && curr <= prev || curr > next && next >= prev) {
-      value = k(index + 1) + 1;
-    }
-    else {
-      value = 1;
-    }
+    if (curr > prev && curr <= next) value = k(index - 1) + 1;
+    else if (curr > prev && prev >= next) value = k(index - 1) + 1;
+    else if (curr > next && curr <= prev) value = k(index + 1) + 1;
+    else if (curr > next && next >= prev) value = k(index + 1) + 1;
+    else value = 1;
     results[index] = value;
     return value;
   };
