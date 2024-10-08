@@ -7,8 +7,20 @@
 function canCompleteCircuit(gas: number[], cost: number[]): number {
   const diff = gas.map((item, index) => item - cost[index]);
   console.log(diff);
+  const list1: number[] = [];
+  for (let i = 0, sum = 0; i < diff.length; ++i) {
+    sum += diff[i];
+    list1[i] = sum;
+  }
+  console.log(list1);
+  const list2: number[] = [];
+  for (let i = diff.length - 1, sum = 0; i >= 0; --i) {
+    sum += diff[i];
+    list2[i] = sum;
+  }
+  console.log(list2);
   return -1;
 }
 
 console.log(canCompleteCircuit([1,2,3,4,5], [3,4,5,1,2]));
-console.log(canCompleteCircuit([2,3,4], [3,4,3]));
+// console.log(canCompleteCircuit([2,3,4], [3,4,3]));
