@@ -11,7 +11,15 @@
 // [3, 1, 2, 8, 2, 3, 5, 6, 6, 1, 2]
 // [*, \, /, /, \, /, /, /, -, \, /]
 function candy(ratings: number[]): number {
+  ratings = [Infinity, ...ratings, Infinity];
+  const k = (index: number) => {
+    const curr = ratings[index];
+    const prev = ratings[index - 1];
+    const next = ratings[index + 1];
+    if (prev < curr && curr <= next) return 1;
+    return 1;
+  };
   return 0;
 }
 
-candy([23, 20, 2, 3, 3, 4, 3, 0, 0]);
+candy([3, 1, 2, 8, 2, 3, 5, 6, 6, 1, 2]);
