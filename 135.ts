@@ -12,11 +12,14 @@
 // [*, \, /, /, \, /, /, /, -, \, /]
 function candy(ratings: number[]): number {
   ratings = [Infinity, ...ratings, Infinity];
-  const k = (index: number) => {
+  const k: (index: number) => number = (index) => {
     const curr = ratings[index];
     const prev = ratings[index - 1];
     const next = ratings[index + 1];
-    if (prev < curr && curr <= next) return 1;
+    if (curr > prev && curr <= next) return k(index - 1) + 1;
+    if (curr > prev && prev >= next) return k(index - 1) + 1;
+    if (curr > next && curr <= prev) return k(index + 1) + 1;
+    if (curr > next && next >= prev) return k(index + 1) + 1;
     return 1;
   };
   return 0;
