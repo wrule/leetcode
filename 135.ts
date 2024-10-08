@@ -13,24 +13,23 @@
 function candy(ratings: number[]): number {
   ratings = [Infinity, ...ratings, Infinity];
   const results = Array(ratings.length).fill(0);
-  const r = (index: number, value: number) => {
-    return results[index] = value;
-  };
   const k: (index: number) => number = (index) => {
     if (results[index]) return results[index];
     const curr = ratings[index];
     const prev = ratings[index - 1];
     const next = ratings[index + 1];
-    if (curr > prev && curr <= next) return r(index, k(index - 1) + 1);
-    if (curr > prev && prev >= next) return r(index, k(index - 1) + 1);
-    if (curr > next && curr <= prev) return r(index, k(index + 1) + 1);
-    if (curr > next && next >= prev) return r(index, k(index + 1) + 1);
-    return r(index, 1);
+    let value = 0;
+    if (curr > prev && curr <= next) value = k(index - 1) + 1;
+    else if (curr > prev && prev >= next) value = k(index - 1) + 1;
+    else if (curr > next && curr <= prev) value = k(index + 1) + 1;
+    else if (curr > next && next >= prev) value = k(index + 1) + 1;
+    else value = 1;
+    results[index] = value;
+    return value;
   };
   for (let i = 1; i < ratings.length - 1; ++i) {
-    results.push(k(i));
+    k(i);
   }
-  console.log(results);
   let sum = 0;
   results.forEach((num) => sum += num);
   return sum;
