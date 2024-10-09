@@ -33,7 +33,11 @@ let result: number[] = [];
 function preorderTraversal2(root: TreeNode | null): number[] {
   result = [];
   if (root != null) {
-    if (root.right) stack.push(root.right);
+    stack.push(root);
+    while (stack.length > 0) {
+      const current = stack.pop() as TreeNode;
+      result.push(current.val);
+    }
   }
   return result;
 }
