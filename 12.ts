@@ -11,7 +11,7 @@ const weightList = Object.keys(weightMap).map((key) => Number(key)).sort((a, b) 
 function intToRoman(num: number): string {
   let result = '';
   for (let i = 0; i < weightList.length && num > 0; ++i) {
-    
+    const weight = weightList[i];
   }
   return result;
 }
