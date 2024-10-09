@@ -23,14 +23,16 @@ class TreeNode {
   }
 }
 
-function preorderTraversal(root: TreeNode | null): number[] {
+// 递归实现：时间复杂度O(N)，空间复杂度O(N)
+function preorderTraversal2(root: TreeNode | null): number[] {
   if (root == null) return [];
   return [root.val, ...preorderTraversal(root.left), ...preorderTraversal(root.right)];
 }
 
+// 栈实现：时间复杂度O(N)，空间复杂度O(N)
 let stack: TreeNode[] = [];
 let result: number[] = [];
-function preorderTraversal2(root: TreeNode | null): number[] {
+function preorderTraversal(root: TreeNode | null): number[] {
   stack = [];
   result = [];
   let current = root;
