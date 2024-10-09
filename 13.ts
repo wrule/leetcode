@@ -19,9 +19,19 @@
 
 function romanToInt(s: string): number {
   const charMap: any = { 'I': 1, 'V': 5, 'X': 10, 'L': 50, 'C': 100, 'D': 500, 'M': 1000 };
-  const numArray = Array.from(s).map((char) => charMap[char]);
-  console.log(numArray);
-  return 0;
+  const numQueue: number[] = Array.from(s).map((char) => charMap[char]);
+  let sum = 0;
+  while (numQueue.length > 0) {
+    const num = numQueue.shift() as number;
+    const top = numQueue[0];
+    if ((num === 1 || num === 10 || num === 100) && top > num) {
+      sum += top - num;
+      numQueue.shift();
+    } else {
+      sum += num;
+    }
+  }
+  return sum;
 }
 
-romanToInt('XXVII');
+console.log(romanToInt('XL'));
