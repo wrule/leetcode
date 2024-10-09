@@ -8,3 +8,6 @@
 function intToRoman(num: number): string {
   return '';
 }
+
+console.log(intToRoman(3749));
+// MMMDCCXLIX
