@@ -3,5 +3,5 @@
 // 如果不存在公共前缀，返回空字符串 ""。
 
 function longestCommonPrefix(strs: string[]): string {
-  return '';    
+  return '';
 }
