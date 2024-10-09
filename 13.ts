@@ -18,5 +18,10 @@
 // 给定一个罗马数字，将其转换成整数。
 
 function romanToInt(s: string): number {
-  return 0;    
+  const charMap: any = { 'I': 1, 'V': 5, 'X': 10, 'L': 50, 'C': 100, 'D': 500, 'M': 1000 };
+  const numArray = Array.from(s).map((char) => charMap[char]);
+  console.log(numArray);
+  return 0;
 }
+
+romanToInt('XXVII');
