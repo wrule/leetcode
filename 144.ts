@@ -26,4 +26,10 @@ class TreeNode {
 function preorderTraversal(root: TreeNode | null): number[] {
   if (root == null) return [];
   return [root.val, ...preorderTraversal(root.left), ...preorderTraversal(root.right)];
-};
+}
+
+const stack: (TreeNode | null)[] = [];
+const result: number[] = [];
+function preorderTraversal2(root: TreeNode | null): number[] {
+  return result;
+}
