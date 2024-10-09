@@ -5,8 +5,13 @@
 // 只有 10 的次方（I, X, C, M）最多可以连续附加 3 次以代表 10 的倍数。你不能多次附加 5 (V)，50 (L) 或 500 (D)。如果需要将符号附加4次，请使用 减法形式。
 // 给定一个整数，将其转换为罗马数字。
 
+const weightMap = { 1000: 'M', 500: 'D', 100: 'C', 50: 'L', 10: 'X', 5: 'V', 1: 'I' };
+const weightList = Object.keys(weightMap).map((key) => Number(key)).sort((a, b) => b - a);
+
 function intToRoman(num: number): string {
-  return '';
+  let result = '';
+  console.log(weightList);
+  return result;
 }
 
 console.log(intToRoman(3749));
