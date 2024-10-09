@@ -28,8 +28,12 @@ function preorderTraversal(root: TreeNode | null): number[] {
   return [root.val, ...preorderTraversal(root.left), ...preorderTraversal(root.right)];
 }
 
-const stack: (TreeNode | null)[] = [];
-const result: number[] = [];
+const stack: TreeNode[] = [];
+let result: number[] = [];
 function preorderTraversal2(root: TreeNode | null): number[] {
+  result = [];
+  if (root != null) {
+    if (root.right) stack.push(root.right);
+  }
   return result;
 }
