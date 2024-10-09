@@ -14,10 +14,18 @@ function trap(height: number[]): number {
     leftMaxList[leftIndex] = leftMax;
     rightMaxList[rightIndex] = rightMax;
   }
-  console.log(height);
-  console.log(leftMaxList);
-  console.log(rightMaxList);
-  return 0;
+  let sum = 0;
+  height.forEach((num, index) => {
+    const leftMax = leftMaxList[index];
+    const rightMax = rightMaxList[index];
+    let result = 0;
+    if (num < leftMax && num < rightMax) {
+      result = Math.min(leftMax, rightMax) - num;
+    }
+    sum += result;
+    // console.log(leftMax, num, rightMax, result);
+  });
+  return sum;
 }
 
 console.log(trap([0,1,0,2,1,0,1,3,2,1,2,1]));
