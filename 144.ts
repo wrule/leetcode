@@ -24,5 +24,6 @@ class TreeNode {
 }
 
 function preorderTraversal(root: TreeNode | null): number[] {
-  return [];
+  if (root == null) return [];
+  return [root.val, ...preorderTraversal(root.left), ...preorderTraversal(root.right)];
 };
