@@ -6,7 +6,7 @@
 // 左括号必须以正确的顺序闭合。
 // 每个右括号都有一个对应的相同类型的左括号。
 
-
+// 时间复杂度O(N)，空间复杂度O(N)
 function isValid(s: string): boolean {
   const charArray = Array.from(s);
   const charStack: string[] = [];
