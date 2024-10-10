@@ -12,5 +12,10 @@
 // string convert(string s, int numRows);
 
 function convert(s: string, numRows: number): string {
-  return '';
+  const charArray = Array.from(s);
+  let result = '';
+  for (let i = 0; i < numRows; ++i) {
+    
+  }
+  return result;
 }
