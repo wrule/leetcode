@@ -7,7 +7,21 @@
 // 注意：输入字符串 s中可能会存在前导空格、尾随空格或者单词间的多个空格。返回的结果字符串中，单词间应当仅用单个空格分隔，且不包含任何额外的空格。
 
 function reverseWords(s: string): string {
-  return '';
+  const charArray = [' '].concat(Array.from(s));
+  let result = '';
+  let subStr = '';
+  for (let i = charArray.length - 1; i >= 0; --i) {
+    const char = charArray[i];
+    if (char === ' ') {
+      if (subStr !== '') {
+        result = (result ? result + ' ' : '') + subStr;
+      }
+      subStr = '';
+    } else {
+      subStr = char + subStr;
+    }
+  }
+  return result;
 }
 
 console.log(reverseWords('  hello world  good boy '));
