@@ -12,15 +12,17 @@
 // string convert(string s, int numRows);
 
 function convert(s: string, numRows: number): string {
+  let steps = (numRows - 1) + (numRows - 2) + 1;
+  if (steps < 1) steps = 1;
   const charArray = Array.from(s);
   let result = '';
   for (let i = 0; i < numRows; ++i) {
     if (i === 0) {
-      for (let n = 0; n < charArray.length; n += numRows + 2) {
+      for (let n = 0; n < charArray.length; n += steps) {
         result += charArray[n];
       }
     } else if (i === numRows - 1) {
-      for (let n = numRows - 1; n < charArray.length; n += numRows + 2) {
+      for (let n = numRows - 1; n < charArray.length; n += steps) {
         result += charArray[n];
       }
     } else {
@@ -31,17 +33,17 @@ function convert(s: string, numRows: number): string {
         } else {
           break;
         }
-        const middle = n + (numRows + 2) - i * 2;
+        const middle = n + steps - i * 2;
         if (middle < charArray.length) {
           result += charArray[middle];
         } else {
           break;
         }
-        n += numRows + 2;
+        n += steps;
       }
     }
   }
   return result;
 }
 
-console.log(convert('PAYPALISHIRING', 4));
+console.log(convert('PAYPALISHIRING', 3));
