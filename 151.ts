@@ -9,3 +9,5 @@
 function reverseWords(s: string): string {
   return '';
 }
+
+console.log(reverseWords('  hello world  good boy '));
