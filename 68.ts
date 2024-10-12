@@ -14,11 +14,22 @@
 
 function fullJustify(words: string[], maxWidth: number): string[] {
   const result: string[] = [];
-  let line = '';
+  let lineWords: string[] = [];
+  let lineLength = 0;
   words.forEach((word) => {
-    console.log(word);
+    const nextMinLineLength = lineLength + word.length + (lineWords.length > 0 ? lineWords.length : 0);
+    // console.log(word, lineWords, nextMinLineLength, maxWidth);
+    if (nextMinLineLength <= maxWidth) {
+      lineLength += word.length;
+      lineWords.push(word);
+    } else {
+      console.log('---', lineWords, maxWidth - lineLength);
+      lineWords = [word];
+      lineLength = word.length;
+    }
   });
+  console.log('---', lineWords, maxWidth - lineLength);
   return result;
 }
 
-console.log(fullJustify(["This", "is", "an", "example", "of", "text", "justification."], 16));
+console.log(fullJustify(["Science","is","what","we","understand","well","enough","to","explain","to","a","computer.","Art","is","everything","else","we","do"], 20));
