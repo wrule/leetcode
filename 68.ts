@@ -15,7 +15,8 @@
 function fullJustify(words: string[], maxWidth: number): string[] {
   const result: string[] = [];
   const newLine = (words: string[], diff: number) => {
-    console.log(words, diff);
+    const interval = Math.floor(diff / (words.length - 1));
+    console.log(words, diff, interval);
   };
   let lineWords: string[] = [];
   let lineLength = 0;
