@@ -14,6 +14,10 @@
 
 function fullJustify(words: string[], maxWidth: number): string[] {
   const result: string[] = [];
+  let line = '';
+  words.forEach((word) => {
+    console.log(word);
+  });
   return result;
 }
 
