@@ -13,5 +13,8 @@
 // 输入单词数组 words 至少包含一个单词。
 
 function fullJustify(words: string[], maxWidth: number): string[] {
-  return [];
+  const result: string[] = [];
+  return result;
 }
+
+console.log(fullJustify(["This", "is", "an", "example", "of", "text", "justification."], 16));
