@@ -10,6 +10,10 @@ function twoSum(numbers: number[], target: number): number[] {
   let leftIndex = 0;
   let rightIndex = numbers.length - 1;
   while (rightIndex > leftIndex) {
+    const sum = numbers[leftIndex] + numbers[rightIndex];
+    if (sum < target) break;
+    if (sum > target) break;
+    if (sum === target) break;
   }
-  return [];
+  return [leftIndex, rightIndex];
 }
