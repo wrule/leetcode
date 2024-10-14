@@ -11,5 +11,11 @@
 // 特别感谢 @pbrother 添加此问题并且创建所有测试用例。
 
 function isSubsequence(s: string, t: string): boolean {
-  return true;
+  const sCharArray = Array.from(s);
+  const tCharArray = Array.from(t);
+  let result = true;
+  for (let i = 0; i < tCharArray.length; ++i) {
+    
+  }
+  return false;
 }
