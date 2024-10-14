@@ -21,10 +21,14 @@ function fullJustify(words: string[], maxWidth: number): string[] {
     } else {
       const interval = Array(Math.floor(diff / (words.length - 1 >= 1 ? words.length - 1 : 1))).fill(' ').join('');
       for (let i = words.length - 1; i >= 1; --i) {
-        
+        words.splice(i, 0, interval);
+        diff -= interval.length;
       }
+      if (diff > 0) {
+        words[1] = (words[1] ?? '') + Array(diff).fill(' ').join('');
+      }
+      result = words.join('');
     }
-    console.log(result);
     return result;
   };
   let lineWords: string[] = [];
@@ -44,4 +48,4 @@ function fullJustify(words: string[], maxWidth: number): string[] {
   return result;
 }
 
-console.log(fullJustify(["What","must","be","acknowledgment","shall","be"], 16));
+console.log(fullJustify(["Science","is","what","we","understand","well","enough","to","explain","to","a","computer.","Art","is","everything","else","we","do"], 20));
