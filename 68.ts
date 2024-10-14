@@ -14,19 +14,15 @@
 
 function fullJustify(words: string[], maxWidth: number): string[] {
   const result: string[] = [];
-  const newLine = (words: string[], diff: number) => {
-    const interval = Math.floor(diff / (words.length - 1 >= 1 ? words.length - 1 : 1));
-    if (words.length === 1) return words[0] + Array(diff).fill(' ').join('');
-    for (let i = words.length - 1; i >= 1; --i) {
-      if (i === 1) {
-        words.splice(i, 0, Array(diff).fill(' ').join(''));
-        diff = 0;
-      } else {
-        words.splice(i, 0, Array(interval).fill(' ').join(''));
-        diff -= interval;
-      }
+  const newLine = (words: string[], diff: number, isLast = false) => {
+    const interval = Array(Math.floor(diff / (words.length - 1 >= 1 ? words.length - 1 : 1))).fill(' ').join('');
+    let result = '';
+    if (isLast) {
+
+    } else {
+      
     }
-    return words.join('');
+    return result;
   };
   let lineWords: string[] = [];
   let lineLength = 0;
@@ -41,8 +37,8 @@ function fullJustify(words: string[], maxWidth: number): string[] {
       lineLength = word.length;
     }
   });
-  result.push(newLine(lineWords, maxWidth - lineLength));
+  result.push(newLine(lineWords, maxWidth - lineLength, true));
   return result;
 }
 
-console.log(fullJustify(["Science","is","what","we","understand","well","enough","to","explain","to","a","computer.","Art","is","everything","else","we","do"], 20));
+console.log(fullJustify(["What","must","be","acknowledgment","shall","be"], 16));
