@@ -7,5 +7,9 @@
 // 你所设计的解决方案必须只使用常量级的额外空间。
 
 function twoSum(numbers: number[], target: number): number[] {
+  let leftIndex = 0;
+  let rightIndex = numbers.length - 1;
+  while (rightIndex > leftIndex) {
+  }
   return [];
 }
