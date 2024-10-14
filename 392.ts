@@ -14,8 +14,9 @@ function isSubsequence(s: string, t: string): boolean {
   const sCharArray = Array.from(s);
   const tCharArray = Array.from(t);
   let result = true;
-  for (let i = 0; i < tCharArray.length; ++i) {
-    
+  let leftIndex = 0;
+  while (true) {
+    const rightIndex = tCharArray.length - 1 - leftIndex;
   }
   return false;
 }
