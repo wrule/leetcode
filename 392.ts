@@ -13,10 +13,13 @@
 function isSubsequence(s: string, t: string): boolean {
   const sCharArray = Array.from(s);
   const tCharArray = Array.from(t);
-  let result = true;
-  let leftIndex = 0;
-  while (true) {
-    const rightIndex = tCharArray.length - 1 - leftIndex;
+  for (let i = 0; i < tCharArray.length; ++i) {
+    if (sCharArray.length === 0) break;
+    if (tCharArray[i] === sCharArray[0]) {
+      sCharArray.shift();
+    }
   }
-  return false;
+  return sCharArray.length === 0;
 }
+
+console.log(isSubsequence('时间话123', '你时间的话ss12'));
