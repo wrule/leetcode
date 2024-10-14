@@ -15,13 +15,16 @@
 function fullJustify(words: string[], maxWidth: number): string[] {
   const result: string[] = [];
   const newLine = (words: string[], diff: number, isLast = false) => {
-    const interval = Array(Math.floor(diff / (words.length - 1 >= 1 ? words.length - 1 : 1))).fill(' ').join('');
     let result = '';
     if (isLast) {
-
+      result = words.join(' ') + Array(diff - (words.length - 1)).fill(' ').join('');
     } else {
-      
+      const interval = Array(Math.floor(diff / (words.length - 1 >= 1 ? words.length - 1 : 1))).fill(' ').join('');
+      for (let i = words.length - 1; i >= 1; --i) {
+        
+      }
     }
+    console.log(result);
     return result;
   };
   let lineWords: string[] = [];
