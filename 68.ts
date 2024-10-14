@@ -15,24 +15,33 @@
 function fullJustify(words: string[], maxWidth: number): string[] {
   const result: string[] = [];
   const newLine = (words: string[], diff: number) => {
-    const interval = Math.floor(diff / (words.length - 1));
-    console.log(words, diff, interval);
+    const interval = Math.floor(diff / (words.length - 1 >= 1 ? words.length - 1 : 1));
+    if (words.length === 1) return words[0] + Array(diff).fill(' ').join('');
+    for (let i = words.length - 1; i >= 1; --i) {
+      if (i === 1) {
+        words.splice(i, 0, Array(diff).fill(' ').join(''));
+        diff = 0;
+      } else {
+        words.splice(i, 0, Array(interval).fill(' ').join(''));
+        diff -= interval;
+      }
+    }
+    return words.join('');
   };
   let lineWords: string[] = [];
   let lineLength = 0;
   words.forEach((word) => {
     const nextMinLineLength = lineLength + word.length + (lineWords.length > 0 ? lineWords.length : 0);
-    // console.log(word, lineWords, nextMinLineLength, maxWidth);
     if (nextMinLineLength <= maxWidth) {
       lineLength += word.length;
       lineWords.push(word);
     } else {
-      newLine(lineWords, maxWidth - lineLength);
+      result.push(newLine(lineWords, maxWidth - lineLength));
       lineWords = [word];
       lineLength = word.length;
     }
   });
-  newLine(lineWords, maxWidth - lineLength);
+  result.push(newLine(lineWords, maxWidth - lineLength));
   return result;
 }
 
