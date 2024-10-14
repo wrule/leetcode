@@ -9,11 +9,13 @@
 function twoSum(numbers: number[], target: number): number[] {
   let leftIndex = 0;
   let rightIndex = numbers.length - 1;
-  while (rightIndex > leftIndex) {
+  while (rightIndex > leftIndex && leftIndex >= 0 && rightIndex <= numbers.length - 1) {
     const sum = numbers[leftIndex] + numbers[rightIndex];
-    if (sum < target) break;
-    if (sum > target) break;
-    if (sum === target) break;
+    if (sum > target) rightIndex--;
+    else if (sum < target) leftIndex++;
+    else return [leftIndex + 1, rightIndex + 1];
   }
-  return [leftIndex, rightIndex];
+  return [];
 }
+
+console.log(twoSum([2, 2, 2, 2, 2], 4));
