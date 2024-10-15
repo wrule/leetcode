@@ -5,17 +5,12 @@
 function threeSum(nums: number[]): number[][] {
   let leftIndex = 0;
   let rightIndex = nums.length - 1;
-  let middleIndex = leftIndex + 1;
   let result: number[][] = [];
-  while (leftIndex < middleIndex && middleIndex < rightIndex) {
+  while (leftIndex < rightIndex - 1) {
     const leftNum = nums[leftIndex];
-    const middleNum = nums[middleIndex];
     const rightNum = nums[rightIndex];
-    const sum = leftNum + middleNum + rightNum;
-    if (sum === 0) {
-      result.push([leftIndex, middleIndex, rightIndex]);
-    } else {
-
+    for (let middleIndex = leftIndex + 1; middleIndex < rightIndex; ++middleIndex) {
+      const middleNum = nums[middleIndex];
     }
   }
   return [];
