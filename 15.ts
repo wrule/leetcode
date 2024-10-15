@@ -3,6 +3,21 @@
 // 注意：答案中不可以包含重复的三元组。
 
 function threeSum(nums: number[]): number[][] {
+  let leftIndex = 0;
+  let rightIndex = nums.length - 1;
+  let middleIndex = leftIndex + 1;
+  let result: number[][] = [];
+  while (leftIndex < middleIndex && middleIndex < rightIndex) {
+    const leftNum = nums[leftIndex];
+    const middleNum = nums[middleIndex];
+    const rightNum = nums[rightIndex];
+    const sum = leftNum + middleNum + rightNum;
+    if (sum === 0) {
+      result.push([leftIndex, middleIndex, rightIndex]);
+    } else {
+
+    }
+  }
   return [];
 }
 
