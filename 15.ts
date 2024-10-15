@@ -3,6 +3,7 @@
 // 注意：答案中不可以包含重复的三元组。
 
 function threeSum(nums: number[]): number[][] {
+  nums.sort();
   let leftIndex = 0;
   let rightIndex = nums.length - 1;
   let result: number[][] = [];
@@ -11,6 +12,12 @@ function threeSum(nums: number[]): number[][] {
     const rightNum = nums[rightIndex];
     for (let middleIndex = leftIndex + 1; middleIndex < rightIndex; ++middleIndex) {
       const middleNum = nums[middleIndex];
+      const sum = leftNum + middleNum + rightNum;
+      if (sum === 0) {
+        result.push([leftIndex, middleIndex, rightIndex]);
+      } else if (sum > 0) {
+        break;
+      }
     }
   }
   return [];
