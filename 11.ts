@@ -8,7 +8,16 @@
 
 
 function maxArea(height: number[]): number {
-  return 0;
+  let leftIndex = 0;
+  let rightIndex = height.length - 1;
+  let result = 0;
+  while (rightIndex > leftIndex) {
+    const leftHeight = height[leftIndex];
+    const rightHeight = height[rightIndex];
+    const area = (rightIndex - leftIndex) * Math.min(leftHeight, rightHeight);
+    if (area > result) result = area;
+  }
+  return result;
 }
 
 console.log(maxArea([1,8,6,2,5,4,8,3,7]));
