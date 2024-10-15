@@ -6,6 +6,8 @@
 
 // 说明：你不能倾斜容器。
 
+// 思路：动矮的一侧的指针才有机会使得面积变大
+
 
 function maxArea(height: number[]): number {
   let leftIndex = 0;
