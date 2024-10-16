@@ -22,10 +22,10 @@ function threeSum(nums: number[]): number[][] {
         leftIndex++;
       } else {
         result.push([startNum, leftNum, rightNum]);
-        while (leftIndex < rightIndex && nums[leftIndex] === nums[leftIndex + 1]) leftIndex++;
-        while (leftIndex < rightIndex && nums[rightIndex] === nums[rightIndex - 1]) rightIndex--;
         leftIndex++;
         rightIndex--;
+        while (leftIndex < rightIndex && nums[leftIndex] === nums[leftIndex - 1]) leftIndex++;
+        while (leftIndex < rightIndex && nums[rightIndex] === nums[rightIndex + 1]) rightIndex--;
       }
     }
   }
