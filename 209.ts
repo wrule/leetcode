@@ -5,7 +5,12 @@
 //  [numsl, numsl+1, ..., numsr-1, numsr] ，并返回其长度。如果不存在符合条件的子数组，返回 0 。
 
 function minSubArrayLen(target: number, nums: number[]): number {
-  return 0;    
+  let leftIndex = 0;
+  let rightIndex = 0;
+  while (true) {
+    
+  }
+  return 0;
 }
 
 console.log(minSubArrayLen(7, [2,3,1,2,4,3]));
