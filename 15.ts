@@ -20,6 +20,9 @@ function threeSum(nums: number[]): number[][] {
         rightIndex--;
       } else if (sum < 0) {
         leftIndex++;
+        while(nums[leftIndex] === nums[leftIndex - 1] && leftIndex < rightIndex) {
+          leftIndex++;
+        }
       } else {
         result.push([startNum, leftNum, rightNum]);
         leftIndex++;
