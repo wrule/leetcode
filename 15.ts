@@ -6,9 +6,9 @@ function threeSum(nums: number[]): number[][] {
   const result: number[][] = [];
   nums.sort();
   for (let startIndex = 0; startIndex < nums.length - 2; ++startIndex) {
-    // if (startIndex > 0 && nums[startIndex] === nums[startIndex - 1]) {
-    //   continue;
-    // }
+    if (startIndex > 0 && nums[startIndex] === nums[startIndex - 1]) {
+      continue;
+    }
     let leftIndex = startIndex + 1;
     let rightIndex = nums.length - 1;
     while (leftIndex < rightIndex) {
