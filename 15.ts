@@ -18,6 +18,9 @@ function threeSum(nums: number[]): number[][] {
       const sum = startNum + leftNum + rightNum;
       if (sum > 0) {
         rightIndex--;
+        while(nums[rightIndex] === nums[rightIndex + 1] && leftIndex < rightIndex) {
+          rightIndex--;
+        }
       } else if (sum < 0) {
         leftIndex++;
         while(nums[leftIndex] === nums[leftIndex - 1] && leftIndex < rightIndex) {
@@ -26,6 +29,9 @@ function threeSum(nums: number[]): number[][] {
       } else {
         result.push([startNum, leftNum, rightNum]);
         leftIndex++;
+        while(nums[leftIndex] === nums[leftIndex - 1] && leftIndex < rightIndex) {
+          leftIndex++;
+        }
       }
     }
   }
