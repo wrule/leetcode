@@ -18,20 +18,14 @@ function threeSum(nums: number[]): number[][] {
       const sum = startNum + leftNum + rightNum;
       if (sum > 0) {
         rightIndex--;
-        while(nums[rightIndex] === nums[rightIndex + 1] && leftIndex < rightIndex) {
-          rightIndex--;
-        }
       } else if (sum < 0) {
         leftIndex++;
-        while(nums[leftIndex] === nums[leftIndex - 1] && leftIndex < rightIndex) {
-          leftIndex++;
-        }
       } else {
         result.push([startNum, leftNum, rightNum]);
+        while (leftIndex < rightIndex && nums[leftIndex] === nums[leftIndex + 1]) leftIndex++;
+        while (leftIndex < rightIndex && nums[rightIndex] === nums[rightIndex - 1]) rightIndex--;
         leftIndex++;
-        while(nums[leftIndex] === nums[leftIndex - 1] && leftIndex < rightIndex) {
-          leftIndex++;
-        }
+        rightIndex--;
       }
     }
   }
