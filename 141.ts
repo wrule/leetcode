@@ -20,10 +20,14 @@ class ListNode {
 }
 
 function hasCycle(head: ListNode | null): boolean {
-  let result = false;
-  let current = head;
-  while (current) {
-    
+  let fastCurrent = head;
+  let slowCurrent = head;
+  while (fastCurrent && slowCurrent) {
+    // if (fastCurrent === slowCurrent && fastCurrent !== head) {
+    //   return true;
+    // }
+    fastCurrent = fastCurrent.next?.next ?? null;
+    slowCurrent = slowCurrent.next;
   }
-  return result;
+  return false;
 }
