@@ -38,5 +38,5 @@ function threeSum(nums: number[]): number[][] {
   return result;
 }
 
-console.log(threeSum([0,0,0,0]))
+console.log(threeSum([-1,0,1,2,-1,-4,-2,-3,3,0,4]))
 // [[-1,-1,2],[-1,0,1]]
