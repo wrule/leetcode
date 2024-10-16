@@ -7,8 +7,18 @@
 function minSubArrayLen(target: number, nums: number[]): number {
   let leftIndex = 0;
   let rightIndex = 0;
+  let sum = nums[leftIndex];
+  let lengthMin = Infinity;
   while (true) {
-    
+    if (sum < target) {
+
+    } else {
+      const length = rightIndex - leftIndex + 1;
+      if (length === 1) return 1;
+      if (length < lengthMin) {
+        lengthMin = length;
+      }
+    }
   }
   return 0;
 }
