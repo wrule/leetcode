@@ -4,8 +4,22 @@
 
 function lengthOfLongestSubstring(s: string): number {
   const charArray = Array.from(s);
-
-  return 0;
+  let leftIndex = 0;
+  let rightIndex = 0;
+  let lengthMax = 0;
+  const windowMap: any = { };
+  while (rightIndex < charArray.length) {
+    const char = charArray[rightIndex];
+    const length = rightIndex - leftIndex + 1;
+    if (windowMap[char] == null) {
+      windowMap[char] = rightIndex;
+      if (length > lengthMax) lengthMax = length;
+      rightIndex++;
+    } else {
+      leftIndex = windowMap[rightIndex] + 1;
+    }
+  }
+  return lengthMax;
 }
 
 console.log(lengthOfLongestSubstring('pwwkew'));
