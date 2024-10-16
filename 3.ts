@@ -3,5 +3,9 @@
 //  的长度。
 
 function lengthOfLongestSubstring(s: string): number {
+  const charArray = Array.from(s);
+
   return 0;
 }
+
+console.log(lengthOfLongestSubstring('pwwkew'));
