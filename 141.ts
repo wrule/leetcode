@@ -22,12 +22,12 @@ class ListNode {
 function hasCycle(head: ListNode | null): boolean {
   let fastCurrent = head;
   let slowCurrent = head;
-  while (fastCurrent && slowCurrent) {
-    // if (fastCurrent === slowCurrent && fastCurrent !== head) {
-    //   return true;
-    // }
-    fastCurrent = fastCurrent.next?.next ?? null;
-    slowCurrent = slowCurrent.next;
-  }
+  do {
+    fastCurrent = fastCurrent?.next?.next ?? null;
+    slowCurrent = slowCurrent?.next ?? null;
+    if (fastCurrent !== null && fastCurrent === slowCurrent) {
+      return true;
+    }
+  } while (fastCurrent && slowCurrent);
   return false;
 }
