@@ -4,7 +4,7 @@
 
 function threeSum(nums: number[]): number[][] {
   const result: number[][] = [];
-  nums.sort();
+  nums.sort((a, b) => a - b);
   for (let startIndex = 0; startIndex < nums.length - 2; ++startIndex) {
     if (startIndex > 0 && nums[startIndex] === nums[startIndex - 1]) {
       continue;
