@@ -10,16 +10,18 @@ function lengthOfLongestSubstring(s: string): number {
   const windowMap: any = { };
   while (rightIndex < charArray.length) {
     const char = charArray[rightIndex];
-    const length = rightIndex - leftIndex + 1;
+    console.log(leftIndex, rightIndex, char, windowMap);
     if (windowMap[char] == null) {
       windowMap[char] = rightIndex;
+      const length = rightIndex - leftIndex + 1;
       if (length > lengthMax) lengthMax = length;
-      rightIndex++;
     } else {
-      leftIndex = windowMap[rightIndex] + 1;
+      windowMap[char] = null;
+      leftIndex = windowMap[char] + 1;
     }
+    rightIndex++;
   }
   return lengthMax;
 }
 
-console.log(lengthOfLongestSubstring('pwwkew'));
+console.log(lengthOfLongestSubstring('abcabcbb'));
