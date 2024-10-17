@@ -16,8 +16,9 @@ function lengthOfLongestSubstring(s: string): number {
       if (length > lengthMax) lengthMax = length;
       rightIndex++;
     } else {
-      leftIndex = windowMap[char] + 1;
+      const charIndex = windowMap[char] + 1;
       windowMap[char] = null;
+      if (charIndex > leftIndex) leftIndex = charIndex;
     }
   }
   return lengthMax;
