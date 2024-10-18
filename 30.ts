@@ -6,6 +6,8 @@
 // 返回所有串联子串在 s 中的开始索引。你可以以 任意顺序 返回答案。
 
 function findSubstring(s: string, words: string[]): number[] {
+  const wordsMap = Object.fromEntries(words.map((word) => [word, true]));
+  console.log(wordsMap);
   return [];
 }
 
