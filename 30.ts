@@ -8,3 +8,5 @@
 function findSubstring(s: string, words: string[]): number[] {
   return [];
 }
+
+console.log(findSubstring('barfoofoobarthefoobarman', ["bar","foo","the"]));
