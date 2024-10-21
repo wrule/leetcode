@@ -11,6 +11,7 @@ function findSubstring(s: string, words: string[]): number[] {
   const wordsSet = new Set(words);
   const charWindow: string[] = [];
   let leftIndex = 0;
+  let leftWord = '';
   let prevLeftIndex = -wordLength;
   const windowSet = new Set<string>();
   for (let rightIndex = 0; rightIndex < charArray.length; ++rightIndex) {
