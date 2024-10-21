@@ -9,9 +9,10 @@ function findSubstring(s: string, words: string[]): number[] {
   const charArray = Array.from(s);
   const wordLength = words[0].length;
   const wordsSet = new Set(words);
-  console.log(wordsSet);
   const charWindow: string[] = [];
   let leftIndex = 0;
+  let prevLeftIndex = -wordLength;
+  const windowSet = new Set<string>();
   for (let rightIndex = 0; rightIndex < charArray.length; ++rightIndex) {
     const char = charArray[rightIndex];
     charWindow.push(char);
@@ -21,7 +22,16 @@ function findSubstring(s: string, words: string[]): number[] {
     if (charWindow.length === wordLength) {
       const wordWindow = charWindow.join('');
       if (wordsSet.has(wordWindow)) {
-        console.log(wordWindow, true, rightIndex - 2, leftIndex);
+        const wordLeftIndex = rightIndex - 2;
+        console.log(wordWindow, wordLeftIndex, prevLeftIndex);
+        if (wordLeftIndex - prevLeftIndex === wordLength && !windowSet.has(wordWindow)) {
+          windowSet.add(wordWindow);
+        } else {
+          windowSet.clear();
+          windowSet.add(wordWindow);
+        }
+        console.log(windowSet);
+        prevLeftIndex = wordLeftIndex;
       }
     }
   }
