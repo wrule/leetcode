@@ -8,8 +8,8 @@
 function findSubstring(s: string, words: string[]): number[] {
   const charArray = Array.from(s);
   const wordLength = words[0].length;
-  const wordsMap = new Map(words.map((word) => [word, false]));
-  console.log(wordsMap);
+  const wordsSet = new Set(words);
+  console.log(wordsSet);
   const charWindow: string[] = [];
   let leftIndex = 0;
   for (let rightIndex = 0; rightIndex < charArray.length; ++rightIndex) {
@@ -20,7 +20,7 @@ function findSubstring(s: string, words: string[]): number[] {
     }
     if (charWindow.length === wordLength) {
       const wordWindow = charWindow.join('');
-      if (wordsMap.has(wordWindow)) {
+      if (wordsSet.has(wordWindow)) {
         console.log(wordWindow, true, rightIndex - 2, leftIndex);
       }
     }
