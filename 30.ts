@@ -30,3 +30,4 @@ function findSubstring(s: string, words: string[]): number[] {
 }
 
 console.log(findSubstring('barfoofoobarthefoobarman', ["bar","foo","the"]));
+// [6,9,12]
