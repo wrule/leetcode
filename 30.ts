@@ -11,6 +11,7 @@ function findSubstring(s: string, words: string[]): number[] {
   const wordsMap = new Map(words.map((word) => [word, false]));
   console.log(wordsMap);
   const charWindow: string[] = [];
+  let leftIndex = 0;
   for (let rightIndex = 0; rightIndex < charArray.length; ++rightIndex) {
     const char = charArray[rightIndex];
     charWindow.push(char);
@@ -20,9 +21,7 @@ function findSubstring(s: string, words: string[]): number[] {
     if (charWindow.length === wordLength) {
       const wordWindow = charWindow.join('');
       if (wordsMap.has(wordWindow)) {
-        console.log(wordWindow, true);
-      } else {
-        console.log(wordWindow);
+        console.log(wordWindow, true, rightIndex - 2, leftIndex);
       }
     }
   }
