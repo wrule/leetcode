@@ -22,7 +22,7 @@ function findSubstring(s: string, words: string[]): number[] {
     if (charWindow.length === wordLength) {
       const currentWord = charWindow.join('');
       if (wordsDict[currentWord]) {
-        console.log(currentWord);
+        sDict[currentWord] = (sDict[currentWord] ?? 0) + 1;
       }
     }
   }
