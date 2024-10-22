@@ -3,12 +3,33 @@
 // 对于 t 中重复字符，我们寻找的子字符串中该字符数量必须不少于 t 中该字符数量。
 // 如果 s 中存在这样的子串，我们保证它是唯一的答案。
 
+class CountMap {
+  public constructor() { }
+
+  private count = 0;
+  private strMap = new Map<string, number>();
+
+  public inc(str: string) {
+    this.strMap.set(str, (this.strMap.get(str) ?? 0) + 1);
+    this.count++;
+  }
+
+  public dec(str: string) {
+    this.strMap.set(str, (this.strMap.get(str) ?? 0) - 1);
+    this.count--;
+  }
+
+  public has(str: string) {
+    return this.strMap.has(str);
+  }
+}
+
 function minWindow(s: string, t: string): string {
   const sCharArray = Array.from(s);
   const tCharArray = Array.from(t);
-  const tCharMap = new Map<string, number>();
+  const tCharMap = new CountMap();
   tCharArray.forEach((char) => {
-    tCharMap.set(char, (tCharMap.get(char) ?? 0) + 1);
+    tCharMap.inc(char);
   });
   console.log(tCharMap);
   let leftIndex = 0;
