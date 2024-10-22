@@ -20,12 +20,21 @@ class QueueSet {
       this.queueSet.add(str);
       this.queue.push(str);
       if (this.queue.length > this.limit) {
-        const rmStr = this.queue.shift();
-        if (rmStr) {
-          this.queueSet.delete(rmStr);
-        }
+        this.shift();
       }
     }
+  }
+
+  public shift() {
+    const rmStr = this.queue.shift();
+    if (rmStr) {
+      this.queueSet.delete(rmStr);
+    }
+    return rmStr;
+  }
+
+  public has(str: string) {
+    return this.queueSet.has(str);
   }
 
   public clear() {
