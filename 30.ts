@@ -49,11 +49,15 @@ class QueueSet {
 
 function findSubstring(s: string, words: string[]): number[] {
   const result: number[] = [];
+  const wordsSet = new Set(words);
   const wordLength = words[0].length;
   const charWindow = new QueueSet(wordLength);
   const charArray = Array.from(s);
   for (let rightIndex = 0; rightIndex < charArray.length; ++rightIndex) {
     charWindow.add(charArray[rightIndex]);
+    if (wordsSet.has(charWindow.joinStr)) {
+      // console.log(charWindow.joinStr);
+    }
     console.log(charWindow.joinStr);
   }
   return result;
