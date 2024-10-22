@@ -27,7 +27,7 @@ function minWindow(s: string, t: string): string {
         resultLengthMin = result.length;
       }
       const leftChar = s[leftIndex];
-      if (tCharDict[leftChar] != null) {
+      if (tCharDict[leftChar]) {
         sCharDict[leftChar]--;
         if (sCharDict[leftChar] < tCharDict[leftChar]) {
           tCharNum++;
