@@ -6,14 +6,20 @@
 function minWindow(s: string, t: string): string {
   let result = '';
   let leftIndex = 0;
+  const tCharArray = Array.from(t);
+  const tCharDict: any = { };
+  tCharArray.forEach((char) => tCharDict[char] = (tCharDict[char] ?? 0) + 1);
+  console.log(tCharDict);
   for (let rightIndex = 0; rightIndex < s.length; ++rightIndex) {
     const char = s[rightIndex];
-    console.log(char, rightIndex);
+    if (tCharDict[char]) {
+      console.log(char, rightIndex);
+    }
   }
   return result;
 }
 
 console.log(minWindow('ADOBECODEBANC', 'ABC'));
-// BANC
-console.log(minWindow('aaaaaaaaaaaabbbbbcdd', 'abcdd'));
-// abbbbbcdd
+// // BANC
+// console.log(minWindow('aaaaaaaaaaaabbbbbcdd', 'abcdd'));
+// // abbbbbcdd
