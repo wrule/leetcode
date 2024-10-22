@@ -15,22 +15,31 @@ function minWindow(s: string, t: string): string {
   for (let rightIndex = 0; rightIndex < s.length; ++rightIndex) {
     const char = s[rightIndex];
     if (tCharDict[char]) {
-      console.log(char);
       sCharDict[char] = (sCharDict[char] ?? 0) + 1;
       if (sCharDict[char] === tCharDict[char]) {
         tCharNum--;
-        console.log(sCharDict, tCharNum);
-        if (tCharNum === 0 && rightIndex - leftIndex + 1 < resultLengthMin) {
-          result = s.slice(leftIndex, rightIndex + 1);
-          resultLengthMin = result.length;
+      }
+    }
+
+    while (tCharNum === 0) {
+      if (rightIndex - leftIndex + 1 < resultLengthMin) {
+        result = s.slice(leftIndex, rightIndex + 1);
+        resultLengthMin = result.length;
+      }
+      const leftChar = s[leftIndex];
+      if (tCharDict[leftChar] != null) {
+        sCharDict[leftChar]--;
+        if (sCharDict[leftChar] < tCharDict[leftChar]) {
+          tCharNum++;
         }
       }
+      leftIndex++;
     }
   }
   return result;
 }
 
-// console.log(minWindow('ADOBECODEBANC', 'ABC'));
+console.log(minWindow('ADOBECODEBANC', 'ABC'));
 // // BANC
 console.log(minWindow('aaaaaaaaaaaabbbbbcdd', 'abcdd'));
 // abbbbbcdd
