@@ -42,10 +42,7 @@ function minWindow(s: string, t: string): string {
   const sCharArray = Array.from(s);
   const tCharArray = Array.from(t);
   const tCharMap = new CountMap(tCharArray.length);
-  tCharArray.forEach((char) => {
-    tCharMap.change(char, 1);
-  });
-  console.log(tCharMap);
+  tCharArray.forEach((char) => tCharMap.change(char, 1));
   let leftIndex = 0;
   for (let rightIndex = 0; rightIndex < sCharArray.length; ++rightIndex) {
     const char = sCharArray[rightIndex];
