@@ -15,6 +15,10 @@ class QueueSet {
     return this.queue.length;
   }
 
+  public get joinStr() {
+    return this.queue.join('');
+  }
+
   public add(str: string) {
     if (!this.queueSet.has(str)) {
       this.queueSet.add(str);
@@ -46,7 +50,6 @@ class QueueSet {
 function findSubstring(s: string, words: string[]): number[] {
   const result: number[] = [];
   const charArray = Array.from(s);
-  console.log(charArray);
   return result;
 }
 
