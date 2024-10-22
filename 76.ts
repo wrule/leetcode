@@ -4,6 +4,15 @@
 // 如果 s 中存在这样的子串，我们保证它是唯一的答案。
 
 function minWindow(s: string, t: string): string {
+  const sCharArray = Array.from(s);
+  const tCharArray = Array.from(t);
+  const tCharSet = new Set(tCharArray);
+  for (let i = 0; i < sCharArray.length; ++i) {
+    const char = sCharArray[i];
+    if (tCharSet.has(char)) {
+      console.log(char, i);
+    }
+  }
   return '';
 }
 
