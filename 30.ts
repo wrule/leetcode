@@ -23,13 +23,13 @@ function findSubstring(s: string, words: string[]): number[] {
     if (charWindow.length === wordLength) {
       const currentWord = charWindow.join('');
       if (wordsDict[currentWord]) {
-        sDict[currentWord] = (sDict[currentWord] ?? 0) + 1;
+        console.log(currentWord);
       }
     }
   }
   return [];
 }
 
-console.log(findSubstring('wordgoodgoodgoodbestword', ["word","good","best","good"]));
+console.log(findSubstring('aabababaabbaaba', ["ab", "ba"]));
 // [6,9,12]
 // 准备重写
