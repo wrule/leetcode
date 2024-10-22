@@ -9,11 +9,17 @@ function minWindow(s: string, t: string): string {
   const tCharArray = Array.from(t);
   const tCharDict: any = { };
   tCharArray.forEach((char) => tCharDict[char] = (tCharDict[char] ?? 0) + 1);
-  console.log(tCharDict);
+  let tCharNum = Object.keys(tCharDict).length;
+  const sCharDict: any = { };
   for (let rightIndex = 0; rightIndex < s.length; ++rightIndex) {
     const char = s[rightIndex];
     if (tCharDict[char]) {
-      console.log(char, rightIndex);
+      console.log(char);
+      sCharDict[char] = (sCharDict[char] ?? 0) + 1;
+      if (sCharDict[char] === tCharDict[char]) {
+        tCharNum--;
+        console.log(sCharDict, tCharNum);
+      }
     }
   }
   return result;
