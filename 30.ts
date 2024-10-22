@@ -27,16 +27,30 @@ function findSubstring(s: string, words: string[]): number[] {
     }
   }
 
-  console.log(wordList);
-  console.log(indexMap);
-
-  let wordsNum = Object.keys(wordsDict).length;
-  let leftIndex = 0;
-  for (let rightIndex = 0; rightIndex < wordList.length; ++rightIndex) {
-    const { word, index } = wordList[rightIndex];
-    const sDict: any = { [word]: 1 };
+  const result: number[] = [];
+  for (let i = 0; i < wordList.length; ++i) {
+    const sDict: any = { };
+    let wordsNum = Object.keys(wordsDict).length;
+    let { index } = wordList[i];
+    while (wordsNum > 0) {
+      const word = indexMap[index];
+      if (word) {
+        sDict[word] = (sDict[word] ?? 0) + 1;
+        if (sDict[word] === wordsDict[word]) {
+          wordsNum--;
+        } else if (sDict[word] > wordsDict[word]) {
+          break;
+        }
+      } else {
+        break;
+      }
+      index += wordLength;
+    }
+    if (wordsNum === 0) {
+      result.push(wordList[i].index);
+    }
   }
-  return [];
+  return result;
 }
 
 console.log(findSubstring('barfoofoobarthefoobarman', ['bar', 'foo', 'the']));
