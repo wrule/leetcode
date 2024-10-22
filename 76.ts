@@ -5,12 +5,12 @@
 
 function minWindow(s: string, t: string): string {
   let result = '';
-  let leftIndex = 0;
   const tCharArray = Array.from(t);
   const tCharDict: any = { };
   tCharArray.forEach((char) => tCharDict[char] = (tCharDict[char] ?? 0) + 1);
   let tCharNum = Object.keys(tCharDict).length;
   const sCharDict: any = { };
+  let leftIndex = 0;
   for (let rightIndex = 0; rightIndex < s.length; ++rightIndex) {
     const char = s[rightIndex];
     if (tCharDict[char]) {
