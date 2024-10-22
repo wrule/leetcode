@@ -6,18 +6,16 @@
 class CountMap {
   public constructor(private readonly limit: number) { }
 
-  private count = 0;
+  private zeros = 0;
   private queue: string[] = [];
   private countMap = new Map<string, number>();
 
-  public inc(str: string) {
-    this.countMap.set(str, (this.countMap.get(str) ?? 0) + 1);
-    this.count++;
-  }
-
-  public dec(str: string) {
-    this.countMap.set(str, (this.countMap.get(str) ?? 0) - 1);
-    this.count--;
+  public change(str: string, inc: number) {
+    const num = this.countMap.get(str) ?? 0;
+    const newNum = num + inc;
+    if (num !== 0 && newNum === 0) this.zeros++;
+    if (num === 0 && newNum !== 0) this.zeros--;
+    this.countMap.set(str, newNum);
   }
 
   public has(str: string) {
@@ -26,13 +24,13 @@ class CountMap {
 
   public push(str: string) {
     this.queue.push(str);
-    this.dec(str);
+    this.change(str, -1);
     if (this.queue.length > this.limit) this.shift();
   }
 
   public shift() {
     const rmStr = this.queue.shift();
-    if (rmStr) this.inc(rmStr);
+    if (rmStr) this.change(rmStr, 1);
   }
 }
 
@@ -41,7 +39,7 @@ function minWindow(s: string, t: string): string {
   const tCharArray = Array.from(t);
   const tCharMap = new CountMap(tCharArray.length);
   tCharArray.forEach((char) => {
-    tCharMap.inc(char);
+    tCharMap.change(char, 1);
   });
   console.log(tCharMap);
   let leftIndex = 0;
