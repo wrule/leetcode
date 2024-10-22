@@ -5,6 +5,11 @@
 
 function minWindow(s: string, t: string): string {
   let result = '';
+  let leftIndex = 0;
+  for (let rightIndex = 0; rightIndex < s.length; ++rightIndex) {
+    const char = s[rightIndex];
+    console.log(char, rightIndex);
+  }
   return result;
 }
 
