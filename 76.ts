@@ -6,11 +6,15 @@
 function minWindow(s: string, t: string): string {
   const sCharArray = Array.from(s);
   const tCharArray = Array.from(t);
-  const tCharSet = new Set(tCharArray);
+  const tCharMap = new Map<string, number>();
+  tCharArray.forEach((char) => {
+    tCharMap.set(char, (tCharMap.get(char) ?? 0) + 1);
+  });
+  console.log(tCharMap);
   let leftIndex = 0;
   for (let rightIndex = 0; rightIndex < sCharArray.length; ++rightIndex) {
     const char = sCharArray[rightIndex];
-    if (tCharSet.has(char)) {
+    if (tCharMap.has(char)) {
       console.log(char, rightIndex);
     }
   }
