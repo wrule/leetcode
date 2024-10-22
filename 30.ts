@@ -8,25 +8,29 @@
 function findSubstring(s: string, words: string[]): number[] {
   const wordsDict: any = { };
   words.forEach((word) => wordsDict[word] = (wordsDict[word] ?? 0) + 1);
-  let wordsNum = Object.keys(wordsDict).length;
-
-  const sDict: any = { };
 
   const wordLength = words[0].length;
   const charWindow: string[] = [];
   const wordList: { word: string, index: number }[] = [];
-  for (let index = 0; index < s.length; ++index) {
-    const char = s[index];
+  for (let i = 0; i < s.length; ++i) {
+    const char = s[i];
     charWindow.push(char);
     if (charWindow.length > wordLength) charWindow.shift();
     if (charWindow.length === wordLength) {
       const word = charWindow.join('');
       if (wordsDict[word]) {
-        wordList.push({ word, index: index - wordLength + 1 });
+        wordList.push({ word, index: i - wordLength + 1 });
       }
     }
   }
-  console.log(wordList);
+
+  let wordsNum = Object.keys(wordsDict).length;
+  const sDict: any = { };
+  let leftIndex = 0;
+  for (let rightIndex = 0; rightIndex < wordList.length; ++rightIndex) {
+    const { word, index } = wordList[rightIndex];
+    sDict[word] = (sDict[word] ?? 0) + 1;
+  }
   return [];
 }
 
