@@ -7,10 +7,11 @@ function minWindow(s: string, t: string): string {
   const sCharArray = Array.from(s);
   const tCharArray = Array.from(t);
   const tCharSet = new Set(tCharArray);
-  for (let i = 0; i < sCharArray.length; ++i) {
-    const char = sCharArray[i];
+  let leftIndex = 0;
+  for (let rightIndex = 0; rightIndex < sCharArray.length; ++rightIndex) {
+    const char = sCharArray[rightIndex];
     if (tCharSet.has(char)) {
-      console.log(char, i);
+      console.log(char, rightIndex);
     }
   }
   return '';
