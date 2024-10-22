@@ -5,6 +5,7 @@
 
 function minWindow(s: string, t: string): string {
   let result = '';
+  let resultLengthMin = Infinity;
   const tCharArray = Array.from(t);
   const tCharDict: any = { };
   tCharArray.forEach((char) => tCharDict[char] = (tCharDict[char] ?? 0) + 1);
@@ -19,13 +20,17 @@ function minWindow(s: string, t: string): string {
       if (sCharDict[char] === tCharDict[char]) {
         tCharNum--;
         console.log(sCharDict, tCharNum);
+        if (tCharNum === 0 && rightIndex - leftIndex + 1 < resultLengthMin) {
+          result = s.slice(leftIndex, rightIndex + 1);
+          resultLengthMin = result.length;
+        }
       }
     }
   }
   return result;
 }
 
-console.log(minWindow('ADOBECODEBANC', 'ABC'));
+// console.log(minWindow('ADOBECODEBANC', 'ABC'));
 // // BANC
-// console.log(minWindow('aaaaaaaaaaaabbbbbcdd', 'abcdd'));
-// // abbbbbcdd
+console.log(minWindow('aaaaaaaaaaaabbbbbcdd', 'abcdd'));
+// abbbbbcdd
