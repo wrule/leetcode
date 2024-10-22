@@ -81,7 +81,8 @@ function findSubstring(s: string, words: string[]): number[] {
   for (let rightIndex = 0; rightIndex < charArray.length; ++rightIndex) {
     charWindow.add(charArray[rightIndex]);
     if (wordsSet.has(charWindow.joinStr)) {
-      console.log(charWindow.joinStr);
+      const wordLeftIndex = rightIndex - wordLength + 1;
+      console.log(charWindow.joinStr, wordLeftIndex);
     }
   }
   return result;
