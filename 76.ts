@@ -8,6 +8,7 @@ class CountMap {
 
   private notZeros = 0;
   private queue: string[] = [];
+  private queueIndex: number[] = [];
   private countMap = new Map<string, number>();
 
   public change(str: string, inc: number) {
@@ -22,38 +23,50 @@ class CountMap {
     return this.countMap.has(str);
   }
 
-  public push(str: string) {
+  public push(str: string, index: number) {
     this.queue.push(str);
+    this.queueIndex.push(index);
     this.change(str, -1);
     if (this.queue.length > this.limit) this.shift();
   }
 
   public shift() {
     const rmStr = this.queue.shift();
+    this.queueIndex.shift();
     if (rmStr) this.change(rmStr, 1);
   }
 
   public get ready() {
     return this.notZeros === 0;
   }
+
+  public get range() {
+    return [this.queueIndex[0], this.queueIndex[this.queueIndex.length - 1] + 1];
+  }
 }
 
 function minWindow(s: string, t: string): string {
+  let lengthMin = Infinity;
+  let subStrMin = '';
   const sCharArray = Array.from(s);
   const tCharArray = Array.from(t);
   const tCharMap = new CountMap(tCharArray.length);
   tCharArray.forEach((char) => tCharMap.change(char, 1));
-  let leftIndex = 0;
-  for (let rightIndex = 0; rightIndex < sCharArray.length; ++rightIndex) {
-    const char = sCharArray[rightIndex];
+  for (let i = 0; i < sCharArray.length; ++i) {
+    const char = sCharArray[i];
     if (tCharMap.has(char)) {
-      console.log(char, rightIndex);
-      tCharMap.push(char);
-      console.log(tCharMap);
+      tCharMap.push(char, i);
+      if (tCharMap.ready) {
+        const subStr = s.slice(...tCharMap.range);
+        if (subStr.length <= lengthMin) {
+          subStrMin = subStr;
+          lengthMin = subStr.length;
+        }
+      }
     }
   }
-  return '';
+  return subStrMin;
 }
 
-console.log(minWindow('a', 'aa'));
+console.log(minWindow('ADOBECODEBANC', 'ABC'));
 // BANC
