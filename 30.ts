@@ -6,6 +6,26 @@
 // 返回所有串联子串在 s 中的开始索引。你可以以 任意顺序 返回答案。
 
 function findSubstring(s: string, words: string[]): number[] {
+  const wordsDict: any = { };
+  words.forEach((word) => wordsDict[word] = (wordsDict[word] ?? 0) + 1);
+  let wordsNum = Object.keys(wordsDict).length;
+
+  const sDict: any = { };
+
+  const wordLength = words[0].length;
+  const charWindow: string[] = [];
+  let leftIndex = 0;
+  for (let rightIndex = 0; rightIndex < s.length; ++rightIndex) {
+    const char = s[rightIndex];
+    charWindow.push(char);
+    if (charWindow.length > wordLength) charWindow.shift();
+    if (charWindow.length === wordLength) {
+      const currentWord = charWindow.join('');
+      if (wordsDict[currentWord]) {
+        console.log(currentWord);
+      }
+    }
+  }
   return [];
 }
 
