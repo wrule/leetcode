@@ -14,22 +14,22 @@ function findSubstring(s: string, words: string[]): number[] {
 
   const wordLength = words[0].length;
   const charWindow: string[] = [];
-  let leftIndex = 0;
-  let prevWordIndex = 0;
-  for (let rightIndex = 0; rightIndex < s.length; ++rightIndex) {
-    const char = s[rightIndex];
+  const wordList: { word: string, index: number }[] = [];
+  for (let index = 0; index < s.length; ++index) {
+    const char = s[index];
     charWindow.push(char);
     if (charWindow.length > wordLength) charWindow.shift();
     if (charWindow.length === wordLength) {
-      const currentWord = charWindow.join('');
-      if (wordsDict[currentWord]) {
-        console.log(currentWord);
+      const word = charWindow.join('');
+      if (wordsDict[word]) {
+        wordList.push({ word, index: index - wordLength + 1 });
       }
     }
   }
+  console.log(wordList);
   return [];
 }
 
-console.log(findSubstring('aabababaabbaaba', ["ab", "ba"]));
+console.log(findSubstring('barfoofoobarthefoobarman', ['bar', 'foo', 'the']));
 // [6,9,12]
 // 准备重写
