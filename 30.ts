@@ -12,6 +12,7 @@ function findSubstring(s: string, words: string[]): number[] {
   const wordLength = words[0].length;
   const charWindow: string[] = [];
   const wordList: { word: string, index: number }[] = [];
+  const indexMap: any = { };
   for (let i = 0; i < s.length; ++i) {
     const char = s[i];
     charWindow.push(char);
@@ -19,10 +20,15 @@ function findSubstring(s: string, words: string[]): number[] {
     if (charWindow.length === wordLength) {
       const word = charWindow.join('');
       if (wordsDict[word]) {
-        wordList.push({ word, index: i - wordLength + 1 });
+        const index = i - wordLength + 1;
+        wordList.push({ word, index });
+        indexMap[index] = word;
       }
     }
   }
+
+  console.log(wordList);
+  console.log(indexMap);
 
   let wordsNum = Object.keys(wordsDict).length;
   const sDict: any = { };
@@ -30,6 +36,7 @@ function findSubstring(s: string, words: string[]): number[] {
   for (let rightIndex = 0; rightIndex < wordList.length; ++rightIndex) {
     const { word, index } = wordList[rightIndex];
     sDict[word] = (sDict[word] ?? 0) + 1;
+    // console.log(word, index);
   }
   return [];
 }
