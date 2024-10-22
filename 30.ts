@@ -31,12 +31,10 @@ function findSubstring(s: string, words: string[]): number[] {
   console.log(indexMap);
 
   let wordsNum = Object.keys(wordsDict).length;
-  const sDict: any = { };
   let leftIndex = 0;
   for (let rightIndex = 0; rightIndex < wordList.length; ++rightIndex) {
     const { word, index } = wordList[rightIndex];
-    sDict[word] = (sDict[word] ?? 0) + 1;
-    // console.log(word, index);
+    const sDict: any = { [word]: 1 };
   }
   return [];
 }
