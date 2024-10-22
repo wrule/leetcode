@@ -63,6 +63,7 @@ function findSubstring(s: string, words: string[]): number[] {
       const wordWindow = charWindow.join('');
       if (wordsSet.has(wordWindow)) {
         const wordLeftIndex = rightIndex - 2;
+        console.log(wordWindow);
         if (wordLeftIndex - prevLeftIndex !== wordLength || windowSet.has(wordWindow)) {
           windowSet.clear();
         }
@@ -71,6 +72,7 @@ function findSubstring(s: string, words: string[]): number[] {
           result.push(rightIndex - (words.length * wordLength - 1));
           windowSet.shift();
         }
+        console.log(windowSet.data());
         prevLeftIndex = wordLeftIndex;
       }
     }
@@ -78,5 +80,6 @@ function findSubstring(s: string, words: string[]): number[] {
   return result;
 }
 
-console.log(findSubstring('barfoofoobarthefoobarman', ["bar","foo","the"]));
+console.log(findSubstring('wordgoodgoodgoodbestword', ["word","good","best","good"]));
 // [6,9,12]
+// 准备重写
