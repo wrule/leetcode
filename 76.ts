@@ -68,5 +68,5 @@ function minWindow(s: string, t: string): string {
   return subStrMin;
 }
 
-console.log(minWindow('ADOBECODEBANC', 'ABC'));
+console.log(minWindow('aaaaaaaaaaaabbbbbcdd', 'abcdd'));
 // BANC
