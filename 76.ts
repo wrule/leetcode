@@ -6,15 +6,15 @@
 class CountMap {
   public constructor(private readonly limit: number) { }
 
-  private zeros = 0;
+  private notZeros = 0;
   private queue: string[] = [];
   private countMap = new Map<string, number>();
 
   public change(str: string, inc: number) {
     const num = this.countMap.get(str) ?? 0;
     const newNum = num + inc;
-    if (num !== 0 && newNum === 0) this.zeros++;
-    if (num === 0 && newNum !== 0) this.zeros--;
+    if (num !== 0 && newNum === 0) this.notZeros--;
+    if (num === 0 && newNum !== 0) this.notZeros++;
     this.countMap.set(str, newNum);
   }
 
@@ -31,6 +31,10 @@ class CountMap {
   public shift() {
     const rmStr = this.queue.shift();
     if (rmStr) this.change(rmStr, 1);
+  }
+
+  public get ready() {
+    return this.notZeros === 0;
   }
 }
 
@@ -54,5 +58,5 @@ function minWindow(s: string, t: string): string {
   return '';
 }
 
-console.log(minWindow('ADOBECODEBANC', 'ABC'));
+console.log(minWindow('a', 'aa'));
 // BANC
