@@ -5,7 +5,7 @@
   "scripts": {
     "build": "tsc",
     "watch": "tsc --watch",
-    "dev": "node 36.js",
+    "dev": "node x1.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
