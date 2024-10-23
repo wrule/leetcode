@@ -70,15 +70,14 @@ function nodeDFS(node: TNode) {
   node.children?.forEach((child) => nodeDFS(child));
 }
 
-function nodeBFS(nodes: TNode[]) {
-  if (nodes.length === 0) return;
-  const childs: TNode[] = [];
-  nodes.forEach((node) => {
+function nodeBFS(node: TNode) {
+  const queue = [node];
+  while (queue.length > 0) {
+    const node = queue.shift()!;
     console.log(node.value);
-    childs.push(...(node.children ?? []));
-  });
-  nodeBFS(childs);
+    queue.push(...(node.children ?? []));
+  }
 }
 
 nodeDFS(rootNode);
-nodeBFS([rootNode]);
+nodeBFS(rootNode);
