@@ -130,5 +130,33 @@ function nodeMiddle(node: TNode) {
   }
 }
 
-nodeMiddle(rootNode);
+function nodeRight(node: TNode) {
+  const stack: (TNode | TNode[])[] = [];
+  let current: TNode | undefined = node;
+  while (current) {
+    let leftChilds: TNode[] = [];
+    let rightChilds: TNode[] = [];
+    if (current.children && current.children.length >= 1) {
+      const childs: TNode[] = current.children;
+      rightChilds = childs.slice(childs.length - Math.floor(childs.length / 2), childs.length);
+      leftChilds = childs.slice(0, childs.length - rightChilds.length);
+    }
+    stack.push(current);
+    if (rightChilds.length >= 1) stack.push(rightChilds);
+    if (leftChilds.length >= 1) stack.push(leftChilds);
+    current = undefined;
+    while (current === undefined && stack.length >= 1) {
+      const last = stack[stack.length - 1];
+      if (Array.isArray(last)) {
+        current = last.shift();
+        if (last.length === 0) stack.pop();
+      } else {
+        console.log(last.value);
+        stack.pop();
+      }
+    }
+  }
+}
+
+nodeRight(rootNode);
 // nodeBFS(rootNode);
