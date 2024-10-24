@@ -81,19 +81,14 @@ function nodeLeft(node: TNode) {
   }
 }
 
-function nodeRight(node: TNode) {
+function nodeMidde(node: TNode) {
   const queue: TNode[] = [];
   let current: TNode | undefined = node;
   while (current) {
-    console.log(current.value);
     if (current.children && current.children.length >= 1) {
-      const children: TNode[] = current.children;
-      const next = children[0];
-      const others = children.slice(1);
-      current = next;
-      queue.unshift(...others);
-    } else {
-      current = queue.shift();
+      const childs: TNode[] = current.children;
+      const rightChilds = childs.slice(childs.length - Math.floor(childs.length / 2), childs.length);
+      const leftChilds = childs.slice(0, childs.length - rightChilds.length);
     }
   }
 }
