@@ -92,11 +92,24 @@ function nodeMidde(node: TNode) {
       rightChilds = childs.slice(childs.length - Math.floor(childs.length / 2), childs.length);
       leftChilds = childs.slice(0, childs.length - rightChilds.length);
     }
-    const next: TNode | undefined = leftChilds[0];
-    const others = leftChilds.slice(1);
-    if (others.length > )
+    if (leftChilds.length >= 1) queue.push(leftChilds);
+    queue.push(current);
+    if (rightChilds.length >= 1) queue.push(rightChilds);
+    current = undefined;
+    while (current === undefined && queue.length >= 1) {
+      const first = queue[0];
+      if (Array.isArray(first)) {
+        current = first.shift();
+        if (first.length === 0) {
+          queue.shift();
+        }
+      } else {
+        console.log(first.value);
+        queue.shift();
+      }
+    }
   }
 }
 
-nodeLeft(rootNode);
+nodeMidde(rootNode);
 // nodeBFS(rootNode);
