@@ -64,7 +64,7 @@ const rootNode: TNode = {
   ],
 };
 
-function nodeDFS(node: TNode) {
+function nodeLeft(node: TNode) {
   const queue: TNode[] = [];
   let current: TNode | undefined = node;
   while (current) {
@@ -81,14 +81,22 @@ function nodeDFS(node: TNode) {
   }
 }
 
-function nodeBFS(node: TNode) {
-  const queue = [node];
-  while (queue.length > 0) {
-    const node = queue.shift()!;
-    console.log(node.value);
-    queue.push(...(node.children ?? []));
+function nodeRight(node: TNode) {
+  const queue: TNode[] = [];
+  let current: TNode | undefined = node;
+  while (current) {
+    console.log(current.value);
+    if (current.children && current.children.length >= 1) {
+      const children: TNode[] = current.children;
+      const next = children[0];
+      const others = children.slice(1);
+      current = next;
+      queue.unshift(...others);
+    } else {
+      current = queue.shift();
+    }
   }
 }
 
-nodeDFS(rootNode);
+nodeLeft(rootNode);
 // nodeBFS(rootNode);
