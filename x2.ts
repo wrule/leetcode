@@ -154,4 +154,5 @@ function nodeRight(node: TNode) {
 }
 
 nodeLeft(rootNode);
-// nodeBFS(rootNode);
+nodeMiddle(rootNode);
+nodeRight(rootNode);
