@@ -86,7 +86,7 @@ const rootNode: TNode = {
 };
 
 function nodeLeft(node: TNode) {
-  const queue: TNode[] = [];
+  const stack: TNode[] = [];
   let current: TNode | undefined = node;
   while (current) {
     console.log(current.value);
@@ -95,9 +95,9 @@ function nodeLeft(node: TNode) {
       const next = children[0];
       const others = children.slice(1);
       current = next;
-      queue.unshift(...others);
+      stack.push(...others);
     } else {
-      current = queue.shift();
+      current = stack.pop();
     }
   }
 }
