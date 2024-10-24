@@ -102,8 +102,8 @@ function nodeLeft(node: TNode) {
   }
 }
 
-function nodeMidde(node: TNode) {
-  const queue: (TNode | TNode[])[] = [];
+function nodeMiddle(node: TNode) {
+  const stack: (TNode | TNode[])[] = [];
   let current: TNode | undefined = node;
   while (current) {
     let leftChilds: TNode[] = [];
@@ -113,22 +113,22 @@ function nodeMidde(node: TNode) {
       rightChilds = childs.slice(childs.length - Math.floor(childs.length / 2), childs.length);
       leftChilds = childs.slice(0, childs.length - rightChilds.length);
     }
-    if (rightChilds.length >= 1) queue.unshift(rightChilds);
-    queue.unshift(current);
-    if (leftChilds.length >= 1) queue.unshift(leftChilds);
+    if (rightChilds.length >= 1) stack.push(rightChilds);
+    stack.push(current);
+    if (leftChilds.length >= 1) stack.push(leftChilds);
     current = undefined;
-    while (current === undefined && queue.length >= 1) {
-      const first = queue[0];
-      if (Array.isArray(first)) {
-        current = first.shift();
-        if (first.length === 0) queue.shift();
+    while (current === undefined && stack.length >= 1) {
+      const last = stack[stack.length - 1];
+      if (Array.isArray(last)) {
+        current = last.shift();
+        if (last.length === 0) stack.pop();
       } else {
-        console.log(first.value);
-        queue.shift();
+        console.log(last.value);
+        stack.pop();
       }
     }
   }
 }
 
-nodeMidde(rootNode);
+nodeMiddle(rootNode);
 // nodeBFS(rootNode);
