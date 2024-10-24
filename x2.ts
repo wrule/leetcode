@@ -7,60 +7,81 @@ interface TNode {
   children?: TNode[];
 }
 
+// const rootNode: TNode = {
+//   value: '1',
+//   children: [
+//     {
+//       value: '1-1',
+//       children: [
+//         {
+//           value: '1-1-1',
+//         },
+//         {
+//           value: '1-1-2',
+//           children: [
+//             {
+//               value: '1-1-2-1',
+//             },
+//           ],
+//         },
+//       ],
+//     },
+//     {
+//       value: '1-2',
+//     },
+//     {
+//       value: '1-3',
+//       children: [
+//         {
+//           value: '1-3-1',
+//           children: [
+//             {
+//               value: '1-3-1-1',
+//               children: [
+//                 {
+//                   value: '1-3-1-1-1',
+//                 },
+//                 {
+//                   value: '1-3-1-1-2',
+//                 }
+//               ],
+//             }
+//           ],
+//         },
+//         {
+//           value: '1-3-2',
+//           children: [
+//             {
+//               value: '1-3-2-1',
+//             },
+//             {
+//               value: '1-3-2-2',
+//             },
+//           ],
+//         },
+//       ],
+//     }
+//   ],
+// };
+
+
 const rootNode: TNode = {
   value: '1',
   children: [
     {
-      value: '1-1',
+      value: '2',
       children: [
         {
-          value: '1-1-1',
+          value: '4',
         },
         {
-          value: '1-1-2',
-          children: [
-            {
-              value: '1-1-2-1',
-            },
-          ],
+          value: '5',
         },
       ],
     },
     {
-      value: '1-2',
+      value: '3',
     },
-    {
-      value: '1-3',
-      children: [
-        {
-          value: '1-3-1',
-          children: [
-            {
-              value: '1-3-1-1',
-              children: [
-                {
-                  value: '1-3-1-1-1',
-                },
-                {
-                  value: '1-3-1-1-2',
-                }
-              ],
-            }
-          ],
-        },
-        {
-          value: '1-3-2',
-          children: [
-            {
-              value: '1-3-2-1',
-            },
-            {
-              value: '1-3-2-2',
-            },
-          ],
-        },
-      ],
-    }
   ],
 };
 
@@ -92,17 +113,15 @@ function nodeMidde(node: TNode) {
       rightChilds = childs.slice(childs.length - Math.floor(childs.length / 2), childs.length);
       leftChilds = childs.slice(0, childs.length - rightChilds.length);
     }
-    if (leftChilds.length >= 1) queue.push(leftChilds);
-    queue.push(current);
-    if (rightChilds.length >= 1) queue.push(rightChilds);
+    if (rightChilds.length >= 1) queue.unshift(rightChilds);
+    queue.unshift(current);
+    if (leftChilds.length >= 1) queue.unshift(leftChilds);
     current = undefined;
     while (current === undefined && queue.length >= 1) {
       const first = queue[0];
       if (Array.isArray(first)) {
         current = first.shift();
-        if (first.length === 0) {
-          queue.shift();
-        }
+        if (first.length === 0) queue.shift();
       } else {
         console.log(first.value);
         queue.shift();
