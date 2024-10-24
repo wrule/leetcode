@@ -82,14 +82,19 @@ function nodeLeft(node: TNode) {
 }
 
 function nodeMidde(node: TNode) {
-  const queue: TNode[] = [];
+  const queue: (TNode | TNode[])[] = [];
   let current: TNode | undefined = node;
   while (current) {
+    let leftChilds: TNode[] = [];
+    let rightChilds: TNode[] = [];
     if (current.children && current.children.length >= 1) {
       const childs: TNode[] = current.children;
-      const rightChilds = childs.slice(childs.length - Math.floor(childs.length / 2), childs.length);
-      const leftChilds = childs.slice(0, childs.length - rightChilds.length);
+      rightChilds = childs.slice(childs.length - Math.floor(childs.length / 2), childs.length);
+      leftChilds = childs.slice(0, childs.length - rightChilds.length);
     }
+    const next: TNode | undefined = leftChilds[0];
+    const others = leftChilds.slice(1);
+    if (others.length > )
   }
 }
 
