@@ -86,19 +86,14 @@ const rootNode: TNode = {
 };
 
 function nodeLeft(node: TNode) {
-  const stack: TNode[] = [];
+  const queue: TNode[] = [];
   let current: TNode | undefined = node;
   while (current) {
     console.log(current.value);
-    if (current.children && current.children.length >= 1) {
-      const children: TNode[] = current.children;
-      const next = children[0];
-      const others = children.slice(1);
-      current = next;
-      stack.push(...others);
-    } else {
-      current = stack.pop();
+    if (current.children) {
+      queue.unshift(...current.children);
     }
+    current = queue.shift();
   }
 }
 
@@ -158,5 +153,5 @@ function nodeRight(node: TNode) {
   }
 }
 
-nodeRight(rootNode);
+nodeLeft(rootNode);
 // nodeBFS(rootNode);
