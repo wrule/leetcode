@@ -25,8 +25,9 @@ class TreeNode {
 
 function maxDepth(root: TreeNode | null): number {
   const stack: TreeNode[] = [];
+  const stackDeep: number[] = [];
   let deep = 0;
-  let maxDeep = -Infinity;
+  let maxDeep = 0;
   let current = root;
   while (current) {
     deep++;
@@ -35,11 +36,14 @@ function maxDepth(root: TreeNode | null): number {
     }
     if (current.right) {
       stack.push(current.right);
+      stackDeep.push(deep);
     }
     current = current.left;
     if (current == null) {
       current = stack.pop() ?? null;
-      deep--;
+      if (current) {
+        deep = stackDeep.pop() as number;
+      }
     }
   }
   return maxDeep;
