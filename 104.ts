@@ -39,6 +39,7 @@ function maxDepth(root: TreeNode | null): number {
     current = current.left;
     if (current == null) {
       current = stack.pop() ?? null;
+      deep--;
     }
   }
   return maxDeep;
