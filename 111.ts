@@ -31,12 +31,12 @@ function minDepth(root: TreeNode | null): number {
   const stack: TreeNode[] = [];
   const stackDeep: number[] = [];
   let deep = 0;
-  let maxDeep = 0;
+  let minDeep = 0;
   let current = root;
   while (current) {
     deep++;
-    if (deep > maxDeep) {
-      maxDeep = deep;
+    if (!current.left && !current.right && (deep < minDeep || minDeep === 0)) {
+      minDeep = deep;
     }
     if (current.right) {
       stack.push(current.right);
@@ -50,5 +50,5 @@ function minDepth(root: TreeNode | null): number {
       }
     }
   }
-  return maxDeep;
+  return minDeep;
 }
