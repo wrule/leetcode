@@ -18,7 +18,7 @@ function hasPathSum(root: TreeNode | null, targetSum: number): boolean {
   let current = root;
   while (current) {
     sum += current.val;
-    if (sum === targetSum) return true;
+    if (!current.left && !current.right && sum === targetSum) return true;
     if (current.right) stack.push([current.right, current.left?.val ?? 0]);
     current = current.left;
     if (!current) {
@@ -32,3 +32,17 @@ function hasPathSum(root: TreeNode | null, targetSum: number): boolean {
   }
   return false;
 }
+
+const root = new TreeNode(1,
+  new TreeNode(-2,
+    new TreeNode(1,
+      new TreeNode(-1),
+    ),
+    new TreeNode(3),
+  ),
+  new TreeNode(-3,
+    new TreeNode(-2),
+  ),
+);
+
+console.log(hasPathSum(root, 2));
