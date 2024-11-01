@@ -28,7 +28,7 @@ function isNumber(s: string): boolean {
   return RegExp(result).test(s);
 }
 
-enum CHAR_TYPE { CHAR_NUM, CHAR_SIGN, CHAR_EXP, CHAR_POINT, CHAR_ILG };
+enum CHAR_TYPE { CHAR_NUM, CHAR_SIGN, CHAR_EXP, CHAR_POINT };
 enum STATE {
   STATE_INIT,
   STATE_NUM,
@@ -37,7 +37,7 @@ enum STATE {
   STATE_POINT,
   STATE_END,
 };
-const STATE_TREE = {
+const STATE_TREE: any = {
   [STATE.STATE_INIT]: {
     [CHAR_TYPE.CHAR_NUM]: STATE.STATE_NUM,
     [CHAR_TYPE.CHAR_SIGN]: STATE.STATE_SIGN,
@@ -61,20 +61,21 @@ const STATE_TREE = {
   },
 };
 
-function charType(char: string) {
-  if (/\d/.test(char)) return CHAR_TYPE.CHAR_NUM;
-  if (/[\+\-]/.test(char)) return CHAR_TYPE.CHAR_SIGN;
-  if (/[eE]/.test(char)) return CHAR_TYPE.CHAR_EXP;
-  if (/\./.test(char)) return CHAR_TYPE.CHAR_POINT;
-  return CHAR_TYPE.CHAR_ILG;
-}
-
 function isNumberEx(s: string): boolean {
-  let result = true;
+  let state = STATE.STATE_INIT;
   for (const char of s.trim()) {
-    const type = charType(char);
+    let type: CHAR_TYPE;
+    if (char >= '0' && char <= '9') type = CHAR_TYPE.CHAR_NUM;
+    else if (char === '+' || char === '-') type = CHAR_TYPE.CHAR_SIGN;
+    else if (char === 'e' || char === 'E') type = CHAR_TYPE.CHAR_EXP;
+    else if (char === '.') type = CHAR_TYPE.CHAR_POINT;
+    else return false;
+    const nextState: STATE = STATE_TREE[state]?.[type];
+    console.log(nextState);
+    if (!nextState) return false;
+    state = nextState;
   }
-  return result;
+  return state === STATE.STATE_NUM || state === STATE.STATE_POINT;
 }
 
-console.log(isNumberEx('.20'));
+console.log(isNumberEx('.20123d'));
