@@ -29,7 +29,11 @@ function isNumber(s: string): boolean {
 }
 
 function isNumberEx(s: string): boolean {
+  for (let i = 0; i < s.length; ++i) {
+    const char = s[i];
+    console.log(char);
+  }
   return false;
 }
 
-console.log(isNumber('.20'));
+console.log(isNumberEx('.20'));
