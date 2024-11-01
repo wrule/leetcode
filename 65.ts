@@ -30,14 +30,14 @@ function isNumber(s: string): boolean {
 
 enum CHAR_TYPE { CHAR_NUM, CHAR_SIGN, CHAR_EXP, CHAR_POINT };
 enum STATE {
-  STATE_INIT,
-  STATE_POINT,
-  STATE_EXP,
-  STATE_NUM,
-  STATE_POINT_NUM,
-  STATE_EXP_NUM,
-  STATE_SIGN,
-  STATE_EXP_SIGN,
+  STATE_INIT = 'STATE_INIT',
+  STATE_POINT = 'STATE_POINT',
+  STATE_EXP = 'STATE_EXP',
+  STATE_NUM = 'STATE_NUM',
+  STATE_DECIMAL_NUM = 'STATE_DECIMAL_NUM',
+  STATE_EXP_NUM = 'STATE_EXP_NUM',
+  STATE_SIGN = 'STATE_SIGN',
+  STATE_EXP_SIGN = 'STATE_EXP_SIGN',
 };
 const STATE_TREE: any = {
   [STATE.STATE_INIT]: {
@@ -50,8 +50,8 @@ const STATE_TREE: any = {
     [CHAR_TYPE.CHAR_EXP]: STATE.STATE_EXP,
     [CHAR_TYPE.CHAR_POINT]: STATE.STATE_POINT,
   },
-  [STATE.STATE_POINT_NUM]: {
-    [CHAR_TYPE.CHAR_NUM]: STATE.STATE_POINT_NUM,
+  [STATE.STATE_DECIMAL_NUM]: {
+    [CHAR_TYPE.CHAR_NUM]: STATE.STATE_DECIMAL_NUM,
     [CHAR_TYPE.CHAR_EXP]: STATE.STATE_EXP,
   },
   [STATE.STATE_SIGN]: {
@@ -59,7 +59,8 @@ const STATE_TREE: any = {
     [CHAR_TYPE.CHAR_POINT]: STATE.STATE_POINT,
   },
   [STATE.STATE_POINT]: {
-    [CHAR_TYPE.CHAR_NUM]: STATE.STATE_POINT_NUM,
+    [CHAR_TYPE.CHAR_NUM]: STATE.STATE_DECIMAL_NUM,
+    [CHAR_TYPE.CHAR_EXP]: STATE.STATE_EXP,
   },
 
   [STATE.STATE_EXP]: {
@@ -88,7 +89,12 @@ function isNumberEx(s: string): boolean {
     if (!nextState) return false;
     state = nextState;
   }
-  return state === STATE.STATE_NUM || state === STATE.STATE_POINT;
+  return (
+    state === STATE.STATE_NUM ||
+    state === STATE.STATE_DECIMAL_NUM ||
+    state === STATE.STATE_EXP_NUM ||
+    state === STATE.STATE_POINT
+  );
 }
 
-console.log(isNumberEx('.'));
+console.log(isNumberEx('.1E+3'));
