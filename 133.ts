@@ -24,16 +24,17 @@ class _Node {
 
 function cloneGraph(node: _Node | null): _Node | null {
   if (!node) return null;
-  const cpNodes = Array(101).fill(null);
+  const cpNodes: _Node[] = Array(101).fill(null);
   const stack: _Node[] = [node];
   cpNodes[node.val] = new _Node(node.val);
   while (stack.length > 0) {
     const current = stack.pop() as _Node;
     current.neighbors.forEach((neighbor) => {
-      if (cpNodes[neighbor.val]) {
+      if (!cpNodes[neighbor.val]) {
+        cpNodes[neighbor.val] = new _Node(neighbor.val);
         stack.push(neighbor);
-        cpNodes[neighbor.val] = false;
       }
+      cpNodes[current.val].neighbors.push(cpNodes[neighbor.val]);
     });
   }
   return cpNodes[node.val];
