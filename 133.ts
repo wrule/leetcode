@@ -24,22 +24,17 @@ class _Node {
 
 function cloneGraph(node: _Node | null): _Node | null {
   if (!node) return null;
-  const result = new _Node(node.val);
   const flagMap = Array(101).fill(0).map(() => true);
   const stack: _Node[] = [node];
-  const cpStack: _Node[] = [result];
+  flagMap[node.val] = false;
   while (stack.length > 0) {
     const current = stack.pop() as _Node;
-    flagMap[current.val] = false;
-    const cpCurrent = cpStack.pop() as _Node;
     current.neighbors.forEach((neighbor) => {
       if (flagMap[neighbor.val]) {
         stack.push(neighbor);
-        const cpNeighbor = new _Node(neighbor.val);
-        cpCurrent.neighbors.push(cpNeighbor);
-        cpStack.push(cpNeighbor);
+        flagMap[neighbor.val] = false;
       }
     });
   }
-  return result;
+  return null;
 }
