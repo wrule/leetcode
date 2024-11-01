@@ -63,15 +63,15 @@ const STATE_TREE = {
 
 function isNumberEx(s: string): boolean {
   let result = true;
-  const charTypes = Array.from(s.trim()).map((char) => {
+  const charType = (char: string) => {
     if (/\d/.test(char)) return CHAR_TYPE.CHAR_NUM;
     if (/[\+\-]/.test(char)) return CHAR_TYPE.CHAR_SIGN;
     if (/[eE]/.test(char)) return CHAR_TYPE.CHAR_EXP;
     if (/\./.test(char)) return CHAR_TYPE.CHAR_POINT;
     return CHAR_TYPE.CHAR_ILG;
-  });
-  for (let i = 0; i < charTypes.length; ++i) {
-
+  }
+  for (const char of s.trim()) {
+    const type = charType(char);
   }
   return result;
 }
