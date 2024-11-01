@@ -29,6 +29,21 @@ function isNumber(s: string): boolean {
 }
 
 enum CHAR_TYPE { CHAR_NUM, CHAR_SIGN, CHAR_EXP, CHAR_POINT, CHAR_ILG };
+enum STATE {
+  STATE_INIT,
+  STATE_INTEGER,
+  STATE_END,
+};
+const STATE_TREE = {
+  [STATE.STATE_INIT]: {
+    [CHAR_TYPE.CHAR_NUM]: STATE.STATE_INTEGER,
+    [CHAR_TYPE.CHAR_SIGN]: null,
+    [CHAR_TYPE.CHAR_POINT]: null,
+  },
+  [STATE.STATE_END]: {
+
+  },
+};
 
 function isNumberEx(s: string): boolean {
   let result = true;
