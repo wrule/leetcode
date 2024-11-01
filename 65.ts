@@ -31,11 +31,13 @@ function isNumber(s: string): boolean {
 enum CHAR_TYPE { CHAR_NUM, CHAR_SIGN, CHAR_EXP, CHAR_POINT };
 enum STATE {
   STATE_INIT,
-  STATE_NUM,
-  STATE_SIGN,
   STATE_EXP,
+  STATE_NUM,
+  STATE_EXP_NUM,
+  STATE_SIGN,
+  STATE_EXP_SIGN,
   STATE_POINT,
-  STATE_POINT_NUM,
+  STATE_NUM_POINT,
 };
 const STATE_TREE: any = {
   [STATE.STATE_INIT]: {
@@ -46,20 +48,26 @@ const STATE_TREE: any = {
   [STATE.STATE_NUM]: {
     [CHAR_TYPE.CHAR_NUM]: STATE.STATE_NUM,
     [CHAR_TYPE.CHAR_EXP]: STATE.STATE_EXP,
-    [CHAR_TYPE.CHAR_POINT]: STATE.STATE_POINT_NUM,
+    [CHAR_TYPE.CHAR_POINT]: STATE.STATE_NUM_POINT,
   },
   [STATE.STATE_SIGN]: {
     [CHAR_TYPE.CHAR_NUM]: STATE.STATE_NUM,
     [CHAR_TYPE.CHAR_POINT]: STATE.STATE_POINT,
   },
+  [STATE.STATE_EXP_SIGN]: {
+    [CHAR_TYPE.CHAR_NUM]: STATE.STATE_EXP_NUM,
+  },
   [STATE.STATE_EXP]: {
-    [CHAR_TYPE.CHAR_SIGN]: STATE.STATE_SIGN,
-    [CHAR_TYPE.CHAR_NUM]: STATE.STATE_NUM,
+    [CHAR_TYPE.CHAR_SIGN]: STATE.STATE_EXP_SIGN,
+    [CHAR_TYPE.CHAR_NUM]: STATE.STATE_EXP_NUM,
+  },
+  [STATE.STATE_EXP_NUM]: {
+    [CHAR_TYPE.CHAR_NUM]: STATE.STATE_EXP_NUM,
   },
   [STATE.STATE_POINT]: {
     [CHAR_TYPE.CHAR_NUM]: STATE.STATE_NUM,
   },
-  [STATE.STATE_POINT_NUM]: {
+  [STATE.STATE_NUM_POINT]: {
     [CHAR_TYPE.CHAR_NUM]: STATE.STATE_NUM,
   },
 };
@@ -78,7 +86,7 @@ function isNumberEx(s: string): boolean {
     if (!nextState) return false;
     state = nextState;
   }
-  return state === STATE.STATE_NUM || state === STATE.STATE_POINT_NUM;
+  return state === STATE.STATE_NUM || state === STATE.STATE_NUM_POINT;
 }
 
-console.log(isNumberEx('+1234'));
+console.log(isNumberEx('.1.'));
