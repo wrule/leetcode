@@ -97,4 +97,4 @@ function isNumberEx(s: string): boolean {
   );
 }
 
-console.log(isNumberEx('.1E+3'));
+console.log(isNumberEx('.'));
