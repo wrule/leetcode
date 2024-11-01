@@ -12,13 +12,21 @@
 
 // 数字 后跟着一个 小数点 .。
 // 数字 后跟着一个 小数点 . 再跟着 数位。
-// 一个 小数点 . 后跟着 数位。
-// 指数 定义为指数符号 'e' 或 'E'，后面跟着一个 整数。
 
+// 一个 小数点 . 后跟着 数位。
+
+
+// 指数 定义为指数符号 'e' 或 'E'，后面跟着一个 整数。
 // 数字 定义为一个或多个数位。
 
 function isNumber(s: string): boolean {
-  return true;
+  const num = `(\\d+)`;
+  const integer = `([\\-\\+]?${num})`;
+  const exponent = `([eE]${integer})`;
+  const decNum = `([\\-\\+]?((${num}\\.)|(${num}\\.\\d)|(\\.\\d)))`;
+  const result = `^((${integer}${exponent}?)|(${decNum}${exponent}?))$`;
+  return RegExp(result).test(s);
 }
 
-console.log(isNumber('122'));
+console.log(isNumber('.20'));
+
