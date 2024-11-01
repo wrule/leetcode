@@ -36,10 +36,10 @@ function cloneGraph(node: _Node | null): _Node | null {
       if (flagMap[neighbor.val]) {
         stack.push(neighbor);
         const cpNeighbor = new _Node(neighbor.val);
-        current.neighbors.push(cpNeighbor);
+        cpCurrent.neighbors.push(cpNeighbor);
         cpStack.push(cpNeighbor);
       }
     });
   }
-  return null;
+  return result;
 }
