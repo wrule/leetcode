@@ -26,9 +26,12 @@ function cloneGraph(node: _Node | null): _Node | null {
   if (!node) return null;
   const flagMap = Array(101).fill(0).map(() => true);
   const stack: _Node[] = [node];
+  const result = new _Node(node.val);
+  const cpStack: _Node[] = [result];
   flagMap[node.val] = false;
   while (stack.length > 0) {
     const current = stack.pop() as _Node;
+    const cpCurrent = cpStack.pop() as _Node;
     current.neighbors.forEach((neighbor) => {
       if (flagMap[neighbor.val]) {
         stack.push(neighbor);
