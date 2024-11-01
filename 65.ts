@@ -35,7 +35,6 @@ enum STATE {
   STATE_SIGN,
   STATE_EXP,
   STATE_POINT,
-  STATE_END,
 };
 const STATE_TREE: any = {
   [STATE.STATE_INIT]: {
@@ -78,4 +77,4 @@ function isNumberEx(s: string): boolean {
   return state === STATE.STATE_NUM || state === STATE.STATE_POINT;
 }
 
-console.log(isNumberEx('.20123d'));
+console.log(isNumberEx('+1234'));
