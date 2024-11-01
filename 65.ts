@@ -32,7 +32,7 @@ enum CHAR_TYPE { CHAR_NUM, CHAR_SIGN, CHAR_EXP, CHAR_POINT, CHAR_ILG };
 
 function isNumberEx(s: string): boolean {
   let result = true;
-  const charTypes = Array.from(s).map((char) => {
+  const charTypes = Array.from(s.trim()).map((char) => {
     if (/\d/.test(char)) return CHAR_TYPE.CHAR_NUM;
     if (/[\+\-]/.test(char)) return CHAR_TYPE.CHAR_SIGN;
     if (/[eE]/.test(char)) return CHAR_TYPE.CHAR_EXP;
