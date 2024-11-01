@@ -24,9 +24,9 @@ class _Node {
 
 function cloneGraph(node: _Node | null): _Node | null {
   if (!node) return null;
-  const cpNodes: _Node[] = Array(101).fill(null);
-  const stack: _Node[] = [node];
+  const cpNodes: _Node[] = [];
   cpNodes[node.val] = new _Node(node.val);
+  const stack: _Node[] = [node];
   while (stack.length > 0) {
     const current = stack.pop() as _Node;
     current.neighbors.forEach((neighbor) => {
