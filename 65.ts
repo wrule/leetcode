@@ -23,7 +23,7 @@ function isNumber(s: string): boolean {
   const num = `(\\d+)`;
   const integer = `([\\-\\+]?${num})`;
   const exponent = `([eE]${integer})`;
-  const decNum = `([\\-\\+]?((${num}\\.)|(${num}\\.\\d)|(\\.\\d)))`;
+  const decNum = `([\\-\\+]?((${num}\\.)|(${num}\\.${num})|(\\.${num})))`;
   const result = `^((${integer}${exponent}?)|(${decNum}${exponent}?))$`;
   return RegExp(result).test(s);
 }
