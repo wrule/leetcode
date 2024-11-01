@@ -61,15 +61,16 @@ const STATE_TREE = {
   },
 };
 
+function charType(char: string) {
+  if (/\d/.test(char)) return CHAR_TYPE.CHAR_NUM;
+  if (/[\+\-]/.test(char)) return CHAR_TYPE.CHAR_SIGN;
+  if (/[eE]/.test(char)) return CHAR_TYPE.CHAR_EXP;
+  if (/\./.test(char)) return CHAR_TYPE.CHAR_POINT;
+  return CHAR_TYPE.CHAR_ILG;
+}
+
 function isNumberEx(s: string): boolean {
   let result = true;
-  const charType = (char: string) => {
-    if (/\d/.test(char)) return CHAR_TYPE.CHAR_NUM;
-    if (/[\+\-]/.test(char)) return CHAR_TYPE.CHAR_SIGN;
-    if (/[eE]/.test(char)) return CHAR_TYPE.CHAR_EXP;
-    if (/\./.test(char)) return CHAR_TYPE.CHAR_POINT;
-    return CHAR_TYPE.CHAR_ILG;
-  }
   for (const char of s.trim()) {
     const type = charType(char);
   }
