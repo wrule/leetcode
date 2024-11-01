@@ -28,12 +28,21 @@ function isNumber(s: string): boolean {
   return RegExp(result).test(s);
 }
 
+enum CHAR_TYPE { CHAR_NUM, CHAR_SIGN, CHAR_EXP, CHAR_POINT, CHAR_ILG };
+
 function isNumberEx(s: string): boolean {
-  for (let i = 0; i < s.length; ++i) {
-    const char = s[i];
-    console.log(char);
+  let result = true;
+  const charTypes = Array.from(s).map((char) => {
+    if (/\d/.test(char)) return CHAR_TYPE.CHAR_NUM;
+    if (/[\+\-]/.test(char)) return CHAR_TYPE.CHAR_SIGN;
+    if (/[eE]/.test(char)) return CHAR_TYPE.CHAR_EXP;
+    if (/\./.test(char)) return CHAR_TYPE.CHAR_POINT;
+    return CHAR_TYPE.CHAR_ILG;
+  });
+  for (let i = 0; i < charTypes.length; ++i) {
+
   }
-  return false;
+  return result;
 }
 
 console.log(isNumberEx('.20'));
