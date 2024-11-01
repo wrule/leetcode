@@ -35,6 +35,7 @@ enum STATE {
   STATE_SIGN,
   STATE_EXP,
   STATE_POINT,
+  STATE_POINT_NUM,
 };
 const STATE_TREE: any = {
   [STATE.STATE_INIT]: {
@@ -45,7 +46,7 @@ const STATE_TREE: any = {
   [STATE.STATE_NUM]: {
     [CHAR_TYPE.CHAR_NUM]: STATE.STATE_NUM,
     [CHAR_TYPE.CHAR_EXP]: STATE.STATE_EXP,
-    [CHAR_TYPE.CHAR_POINT]: STATE.STATE_POINT,
+    [CHAR_TYPE.CHAR_POINT]: STATE.STATE_POINT_NUM,
   },
   [STATE.STATE_SIGN]: {
     [CHAR_TYPE.CHAR_NUM]: STATE.STATE_NUM,
@@ -56,6 +57,9 @@ const STATE_TREE: any = {
     [CHAR_TYPE.CHAR_NUM]: STATE.STATE_NUM,
   },
   [STATE.STATE_POINT]: {
+    [CHAR_TYPE.CHAR_NUM]: STATE.STATE_NUM,
+  },
+  [STATE.STATE_POINT_NUM]: {
     [CHAR_TYPE.CHAR_NUM]: STATE.STATE_NUM,
   },
 };
@@ -74,7 +78,7 @@ function isNumberEx(s: string): boolean {
     if (!nextState) return false;
     state = nextState;
   }
-  return state === STATE.STATE_NUM || state === STATE.STATE_POINT;
+  return state === STATE.STATE_NUM || state === STATE.STATE_POINT_NUM;
 }
 
 console.log(isNumberEx('+1234'));
