@@ -32,6 +32,7 @@ enum CHAR_TYPE { CHAR_NUM, CHAR_SIGN, CHAR_EXP, CHAR_POINT };
 enum STATE {
   STATE_INIT = 'STATE_INIT',
   STATE_POINT = 'STATE_POINT',
+  STATE_NUM_POINT = 'STATE_NUM_POINT',
   STATE_EXP = 'STATE_EXP',
   STATE_NUM = 'STATE_NUM',
   STATE_DECIMAL_NUM = 'STATE_DECIMAL_NUM',
@@ -48,7 +49,7 @@ const STATE_TREE: any = {
   [STATE.STATE_NUM]: {
     [CHAR_TYPE.CHAR_NUM]: STATE.STATE_NUM,
     [CHAR_TYPE.CHAR_EXP]: STATE.STATE_EXP,
-    [CHAR_TYPE.CHAR_POINT]: STATE.STATE_POINT,
+    [CHAR_TYPE.CHAR_POINT]: STATE.STATE_NUM_POINT,
   },
   [STATE.STATE_DECIMAL_NUM]: {
     [CHAR_TYPE.CHAR_NUM]: STATE.STATE_DECIMAL_NUM,
@@ -59,6 +60,10 @@ const STATE_TREE: any = {
     [CHAR_TYPE.CHAR_POINT]: STATE.STATE_POINT,
   },
   [STATE.STATE_POINT]: {
+    [CHAR_TYPE.CHAR_NUM]: STATE.STATE_DECIMAL_NUM,
+    [CHAR_TYPE.CHAR_EXP]: STATE.STATE_EXP,
+  },
+  [STATE.STATE_NUM_POINT]: {
     [CHAR_TYPE.CHAR_NUM]: STATE.STATE_DECIMAL_NUM,
     [CHAR_TYPE.CHAR_EXP]: STATE.STATE_EXP,
   },
@@ -84,7 +89,7 @@ function isNumberEx(s: string): boolean {
     else if (char === '.') type = CHAR_TYPE.CHAR_POINT;
     else return false;
     const nextState: STATE = STATE_TREE[state]?.[type];
-    console.log(nextState);
+    // console.log(nextState);
     if (!nextState) return false;
     state = nextState;
   }
@@ -92,8 +97,8 @@ function isNumberEx(s: string): boolean {
     state === STATE.STATE_NUM ||
     state === STATE.STATE_DECIMAL_NUM ||
     state === STATE.STATE_EXP_NUM ||
-    state === STATE.STATE_POINT
+    state === STATE.STATE_NUM_POINT
   );
 }
 
-console.log(isNumberEx('.'));
+console.log(isNumberEx('0.8'));
