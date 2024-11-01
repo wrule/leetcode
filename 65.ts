@@ -28,5 +28,8 @@ function isNumber(s: string): boolean {
   return RegExp(result).test(s);
 }
 
-console.log(isNumber('.20'));
+function isNumberEx(s: string): boolean {
+  return false;
+}
 
+console.log(isNumber('.20'));
