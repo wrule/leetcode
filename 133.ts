@@ -35,7 +35,9 @@ function cloneGraph(node: _Node | null): _Node | null {
         stack.push(neighbor);
         flagMap[neighbor.val] = false;
       }
+      cpNodes[neighbor.val] = cpNodes[neighbor.val] ?? new _Node(neighbor.val);
+      cpNodes[current.val].neighbors.push(cpNodes[neighbor.val]);
     });
   }
-  return null;
+  return cpNodes[node.val];
 }
