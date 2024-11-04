@@ -2,7 +2,7 @@
 // 请注意，你需要找的是数组排序后的第 k 个最大的元素，而不是第 k 个不同的元素。
 // 你必须设计并实现时间复杂度为 O(n) 的算法解决此问题。
 
-function quickSort(arr: number[], left: number, right: number, targetIndex: number) {
+function quickSortPrune(arr: number[], left: number, right: number, targetIndex: number) {
   if (left >= right) return;
   const randomIndex = left + Math.floor(Math.random() * (right - left + 1));
   [arr[left], arr[randomIndex]] = [arr[randomIndex], arr[left]];
@@ -17,12 +17,12 @@ function quickSort(arr: number[], left: number, right: number, targetIndex: numb
   }
   arr[left] = arr[mvLeft];
   arr[mvLeft] = baseValue;
-  quickSort(arr, left, mvLeft - 1, targetIndex);
-  quickSort(arr, mvLeft + 1, right, targetIndex);
+  quickSortPrune(arr, left, mvLeft - 1, targetIndex);
+  quickSortPrune(arr, mvLeft + 1, right, targetIndex);
 }
 
 function findKthLargest(nums: number[], k: number): number {
-  quickSort(nums, 0, nums.length - 1, nums.length - k);
+  quickSortPrune(nums, 0, nums.length - 1, nums.length - k);
   return nums[nums.length - k];
 }
 
