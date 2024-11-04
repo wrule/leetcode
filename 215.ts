@@ -3,5 +3,15 @@
 // 你必须设计并实现时间复杂度为 O(n) 的算法解决此问题。
 
 function findKthLargest(nums: number[], k: number): number {
-  return 0;
+  let result = 0;
+  nums.forEach((num) => {
+
+  });
+  return result;
+}
+
+function fastSort(nums: number[]) {
+  let result = nums.slice();
+  // 这里实现快速排序
+  return result;
 }
