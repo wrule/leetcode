@@ -17,8 +17,13 @@ function quickSortPrune(arr: number[], left: number, right: number, targetIndex:
   }
   arr[left] = arr[mvLeft];
   arr[mvLeft] = baseValue;
-  quickSortPrune(arr, left, mvLeft - 1, targetIndex);
-  quickSortPrune(arr, mvLeft + 1, right, targetIndex);
+  if (targetIndex < mvLeft) {
+    quickSortPrune(arr, left, mvLeft - 1, targetIndex);
+  } else if (targetIndex > mvLeft) {
+    quickSortPrune(arr, mvLeft + 1, right, targetIndex);
+  } else {
+    return mvLeft;
+  }
 }
 
 function findKthLargest(nums: number[], k: number): number {
