@@ -14,8 +14,10 @@ function fastSort(nums: number[]) {
   let result = nums.slice();
   function quickSort(arr: number[], left: number, right: number) {
     if (left >= right) return;
-    const baseValue = arr[left];
+    const randomIndex = left + Math.floor(Math.random() * (right - left + 1));
+    [arr[left], arr[randomIndex]] = [arr[randomIndex], arr[left]];
     let mvLeft = left, mvRight = right;
+    const baseValue = arr[left];
     while (mvLeft < mvRight) {
       while (mvLeft < mvRight && arr[mvRight] >= baseValue) mvRight--;
       while (mvLeft < mvRight && arr[mvLeft] <= baseValue) mvLeft++;
@@ -29,7 +31,6 @@ function fastSort(nums: number[]) {
     quickSort(arr, mvLeft + 1, right);
   }
   quickSort(result, 0, result.length - 1);
-  // 这里实现快速排序
   return result;
 }
 
