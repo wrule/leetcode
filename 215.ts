@@ -13,23 +13,20 @@ function findKthLargest(nums: number[], k: number): number {
 function fastSort(nums: number[]) {
   let result = nums.slice();
   function quickSort(arr: number[], left: number, right: number) {
-    if(left >= right) return;
-    
-    const pivot = arr[left];
-    let i = left;
-    let j = right;
-    
-    while(i < j) {
-      while(i < j && arr[j] >= pivot) j--;
-      while(i < j && arr[i] <= pivot) i++;
-      if(i < j) [arr[i], arr[j]] = [arr[j], arr[i]];
+    if (left >= right) return;
+    const baseValue = arr[left];
+    let mvLeft = left, mvRight = right;
+    while (mvLeft < mvRight) {
+      while (mvLeft < mvRight && arr[mvRight] >= baseValue) mvRight--;
+      while (mvLeft < mvRight && arr[mvLeft] <= baseValue) mvLeft++;
+      if (mvLeft < mvRight) {
+        [arr[mvLeft], arr[mvRight]] = [arr[mvRight], arr[mvLeft]];
+      }
     }
-    
-    arr[left] = arr[i];
-    arr[i] = pivot;
-    
-    quickSort(arr, left, i - 1);
-    quickSort(arr, i + 1, right);
+    arr[left] = arr[mvLeft];
+    arr[mvLeft] = baseValue;
+    quickSort(arr, left, mvLeft - 1);
+    quickSort(arr, mvLeft + 1, right);
   }
   quickSort(result, 0, result.length - 1);
   // 这里实现快速排序
