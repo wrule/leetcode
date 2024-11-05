@@ -2,8 +2,16 @@
 class NumberMinHeap {
   public constructor(private readonly size: number) { }
 
+  public heap: number[] = [];
+
   public Add(num: number) {
-    
+    if (this.heap.length < this.size) {
+      this.heap.push(num);
+    } else {
+      if (num > this.heap[0]) {
+        this.heap[0] = num;
+      }
+    }
   }
 }
 
