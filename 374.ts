@@ -20,8 +20,8 @@ class NumberMinHeap {
     let index = this.heap.length - 1;
     while (index > 0) {
       const parentIndex = Math.floor((index - 1) / 2);
-      if (this.heap[parentIndex] > this.heap[index]) {
-        [this.heap[parentIndex], this.heap[index]] = [this.heap[index], this.heap[parentIndex]];
+      if (this.heap[index] < this.heap[parentIndex]) {
+        [this.heap[index], this.heap[parentIndex]] = [this.heap[parentIndex], this.heap[index]];
         index = parentIndex;
       } else {
         break;
