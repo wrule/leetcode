@@ -7,11 +7,17 @@ class NumberMinHeap {
   public Add(num: number) {
     if (this.heap.length < this.size) {
       this.heap.push(num);
+      this.reBuild(this.heap.length - 1);
     } else {
       if (num > this.heap[0]) {
         this.heap[0] = num;
+        this.reBuild(0);
       }
     }
+  }
+
+  private reBuild(index: number) {
+
   }
 }
 
