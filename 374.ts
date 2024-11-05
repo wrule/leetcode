@@ -1,16 +1,16 @@
 
-class NumberMinHeap {
+class TupleMinHeap {
   public constructor(private readonly size: number) { }
 
-  private heap: number[] = [];
+  private heap: [number, number][] = [];
 
-  public Add(num: number) {
+  public Add(tuple: [number, number]) {
     if (this.heap.length < this.size) {
-      this.heap.push(num);
+      this.heap.push(tuple);
       this.siftUp();
     } else {
-      if (num > this.heap[0]) {
-        this.heap[0] = num;
+      if (tuple[1] > this.heap[0][1]) {
+        this.heap[0] = tuple;
         this.siftDown();
       }
     }
@@ -20,7 +20,7 @@ class NumberMinHeap {
     let index = this.heap.length - 1;
     while (index > 0) {
       const parentIndex = Math.floor((index - 1) / 2);
-      if (this.heap[index] < this.heap[parentIndex]) {
+      if (this.heap[index][1] < this.heap[parentIndex][1]) {
         [this.heap[index], this.heap[parentIndex]] = [this.heap[parentIndex], this.heap[index]];
         index = parentIndex;
       } else {
@@ -35,10 +35,10 @@ class NumberMinHeap {
       let smallest = index;
       const left = 2 * index + 1;
       const right = 2 * index + 2;
-      if (left < this.heap.length && this.heap[left] < this.heap[smallest]) {
+      if (left < this.heap.length && this.heap[left][1] < this.heap[smallest][1]) {
         smallest = left;
       }
-      if (right < this.heap.length && this.heap[right] < this.heap[smallest]) {
+      if (right < this.heap.length && this.heap[right][1] < this.heap[smallest][1]) {
         smallest = right;
       }
       if (smallest !== index) {
@@ -51,19 +51,19 @@ class NumberMinHeap {
   }
 
   public Result() {
-    return this.heap;
+    return this.heap.map((tup) => tup[1]);
   }
 }
 
 function topKFrequent(nums: number[], k: number): number[] {
   const hashMap: { [name: number]: number } = { };
   nums.forEach((num) => hashMap[num] = (hashMap[num] ?? 0) + 1);
-  const mapList = Object.entries(hashMap).map(([name, value]) => ([Number(name), value]));
-  console.log(mapList);
-  return [];
+  const mapList: [number, number][] = Object.entries(hashMap).map(([name, value]) => ([Number(name), value]));
+  const minHeap = new TupleMinHeap(k);
+  mapList.forEach((tuple) => {
+    minHeap.Add(tuple);
+  });
+  return minHeap.Result();
 }
 
-// console.log(topKFrequent([1,1,1,2,2,3], 2));
-const minHeap = new NumberMinHeap(3);
-[4, 1, 11, 2, 3, 9, 6].forEach((num) => minHeap.Add(num));
-console.log(minHeap.Result());
+console.log(topKFrequent([1,1,1,2,2,3], 2));
