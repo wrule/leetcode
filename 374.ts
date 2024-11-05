@@ -49,6 +49,10 @@ class NumberMinHeap {
       }
     }
   }
+
+  public Result() {
+    return this.heap;
+  }
 }
 
 function topKFrequent(nums: number[], k: number): number[] {
@@ -61,8 +65,5 @@ function topKFrequent(nums: number[], k: number): number[] {
 
 // console.log(topKFrequent([1,1,1,2,2,3], 2));
 const minHeap = new NumberMinHeap(3);
-minHeap.Add(1);
-minHeap.Add(2);
-minHeap.Add(3);
-minHeap.Add(1.5);
-minHeap.display();
+[4, 1, 11, 2, 3, 9, 6].forEach((num) => minHeap.Add(num));
+console.log(minHeap.Result());
