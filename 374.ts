@@ -7,16 +7,17 @@ class NumberMinHeap {
   public Add(num: number) {
     if (this.heap.length < this.size) {
       this.heap.push(num);
-      this.siftUp(this.heap.length - 1);
+      this.siftUp();
     } else {
       if (num > this.heap[0]) {
         this.heap[0] = num;
-        this.siftDown(0);
+        this.siftDown();
       }
     }
   }
 
-  private siftUp(index: number) {
+  private siftUp() {
+    let index = this.heap.length - 1;
     while (index > 0) {
       const parentIndex = Math.floor((index - 1) / 2);
       if (this.heap[parentIndex] > this.heap[index]) {
@@ -28,7 +29,8 @@ class NumberMinHeap {
     }
   }
 
-  private siftDown(index: number) {
+  private siftDown() {
+    let index = 0;
     while (true) {
       let smallest = index;
       const left = 2 * index + 1;
