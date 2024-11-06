@@ -81,3 +81,12 @@ class MinHeap<T extends { num: number }> {
 function mergeKLists(lists: Array<ListNode | null>): ListNode | null {
   return null;
 }
+
+function test() {
+  const list = [4, 2, 1, 9, 11, 6, 23, 0.5].map((num) => ({ num }));
+  const heap = new MinHeap(10);
+  list.forEach((item) => heap.Push(item));
+  console.log(heap.Nums());
+}
+
+test();
