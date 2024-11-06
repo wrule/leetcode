@@ -94,6 +94,16 @@ class MinHeap<T extends { num: number }> {
 }
 
 function mergeKLists(lists: Array<ListNode | null>): ListNode | null {
+  lists = lists.filter((list) => list);
+  const heap = new MinHeap<{
+    index: number,
+    node: ListNode,
+    num: number,
+  }>(lists.length);
+  for (let i = 0; i < lists.length; ++i) {
+    const node = lists[i]!;
+    heap.Push({ index: i, node, num: node.val });
+  }
   return null;
 }
 
