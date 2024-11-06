@@ -24,6 +24,21 @@ class LinkNode {
 
 class MinHeap<T extends { num: number }> {
   public constructor(private readonly size: number) { }
+
+  private heap: T[] = [];
+
+  private siftUp() {
+    let index = this.heap.length - 1;
+    while (index >= 1) {
+      const parentIndex = Math.floor((index - 1) / 2);
+      if (this.heap[index].num < this.heap[parentIndex].num) {
+        [this.heap[index], this.heap[parentIndex]] = [this.heap[parentIndex], this.heap[index]];
+        index = parentIndex;
+      } else {
+        break;
+      }
+    }
+  }
 }
 
 function mergeKLists(lists: Array<ListNode | null>): ListNode | null {
