@@ -62,6 +62,13 @@ class MinHeap<T extends { num: number }> {
     }
   }
 
+  public Push(item: T) {
+    if (this.heap.length < this.size) {
+      this.heap.push(item);
+      this.siftUp();
+    }
+  }
+
   public Nums() {
     return this.heap.map((item) => item.num);
   }
