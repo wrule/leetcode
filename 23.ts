@@ -43,18 +43,18 @@ class MinHeap<T extends { num: number }> {
   private siftDown() {
     let index = 0;
     while (true) {
-      let smallest = index;
+      let minIndex = index;
       const left = 2 * index + 1;
       const right = 2 * index + 2;
-      if (left < this.heap.length && this.heap[left].num < this.heap[smallest].num) {
-        smallest = left;
+      if (left < this.heap.length && this.heap[left].num < this.heap[minIndex].num) {
+        minIndex = left;
       }
-      if (right < this.heap.length && this.heap[right].num < this.heap[smallest].num) {
-        smallest = right;
+      if (right < this.heap.length && this.heap[right].num < this.heap[minIndex].num) {
+        minIndex = right;
       }
-      if (smallest !== index) {
-        [this.heap[index], this.heap[smallest]] = [this.heap[smallest], this.heap[index]];
-        index = smallest;
+      if (minIndex !== index) {
+        [this.heap[index], this.heap[minIndex]] = [this.heap[minIndex], this.heap[index]];
+        index = minIndex;
       } else {
         break;
       }
