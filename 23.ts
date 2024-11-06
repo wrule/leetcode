@@ -88,15 +88,20 @@ class MinHeap<T extends { num: number }> {
 function mergeKLists(lists: Array<ListNode | null>): ListNode | null {
   let result = new ListNode();
   let current = result;
-  const fLists = lists.filter((list) => list) as ListNode[];
-  const heap = new MinHeap<{ index: number, num: number }>(fLists.length);
-  fLists.forEach((first, index) => {
-    heap.Push({ index, num: first.val });
-  });
+  lists = lists.filter((list) => list);
+  const heap = new MinHeap<{ index: number, num: number }>(lists.length);
+  (lists ).forEach((first, index) => heap.Push({ index, num: first!.val }));
   while (true) {
     const newMinItem = heap.Shift();
     if (!newMinItem) break;
-    current.val = newMinItem.num;
+    current.next = new ListNode(newMinItem.num);
+    current = current.next;
+    lists[newMinItem.index] = lists[newMinItem.index]?.next ?? null;
+    heap.ResetTop(
+      lists[newMinItem.index] ?
+        { index: newMinItem.index, num: lists[newMinItem.index]!.val } :
+        null
+    );
   }
-  return result;
+  return result.next;
 }
