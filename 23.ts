@@ -69,6 +69,19 @@ class MinHeap<T extends { val: number }> {
     }
   }
 
+  public Swap(next: (first: T) => T | null): T | null {
+    if (this.heap.length === 0) return null;
+    const first = this.heap.shift()!;
+    const newFirst = next(first);
+    if (newFirst) {
+      this.heap.unshift(newFirst);
+      this.siftDown();
+    } else {
+      this.siftUp();
+    }
+    return first;
+  }
+
   public Nums() {
     return this.heap.map((item) => item.val);
   }
