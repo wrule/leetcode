@@ -21,3 +21,7 @@ class LinkNode {
     this.next = (next===undefined ? null : next)
   }
 }
+
+function mergeKLists(lists: Array<ListNode | null>): ListNode | null {
+  return null;
+}
