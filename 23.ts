@@ -104,7 +104,20 @@ function mergeKLists(lists: Array<ListNode | null>): ListNode | null {
     const node = lists[i]!;
     heap.Push({ index: i, node, num: node.val });
   }
-  return null;
+  const result = new LinkNode();
+  let current = result;
+  while (true) {
+    const min = heap.Swap((first) => {
+      return lists[first.index].shift() ?? null;
+    });
+    if (min) {
+      current.next = new LinkNode(min.num);
+      current = current.next;
+    } else {
+      break;
+    }
+  }
+  return result.next;
 }
 
 function test() {
