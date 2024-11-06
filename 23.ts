@@ -46,10 +46,10 @@ class MinHeap<T extends { num: number }> {
       let smallest = index;
       const left = 2 * index + 1;
       const right = 2 * index + 2;
-      if (left < this.heap.length && this.heap[left][1] < this.heap[smallest][1]) {
+      if (left < this.heap.length && this.heap[left].num < this.heap[smallest].num) {
         smallest = left;
       }
-      if (right < this.heap.length && this.heap[right][1] < this.heap[smallest][1]) {
+      if (right < this.heap.length && this.heap[right].num < this.heap[smallest].num) {
         smallest = right;
       }
       if (smallest !== index) {
