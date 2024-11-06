@@ -13,7 +13,7 @@
  * }
  */
 
-class LinkNode {
+class ListNode {
   val: number
   next: ListNode | null
   constructor(val?: number, next?: ListNode | null) {
@@ -104,7 +104,7 @@ function mergeKLists(lists: Array<ListNode | null>): ListNode | null {
     const node = lists[i]!;
     heap.Push({ index: i, node, num: node.val });
   }
-  const result = new LinkNode();
+  const result = new ListNode();
   let current = result;
   while (true) {
     const min = heap.Swap((first) => {
@@ -113,7 +113,7 @@ function mergeKLists(lists: Array<ListNode | null>): ListNode | null {
       return next ? { index: first.index, node: next, num: next.val } : null;
     });
     if (min) {
-      current.next = new LinkNode(min.num);
+      current.next = new ListNode(min.num);
       current = current.next;
     } else {
       break;
