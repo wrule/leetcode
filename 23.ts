@@ -22,6 +22,10 @@ class LinkNode {
   }
 }
 
+class MinHeap<T extends { num: number }> {
+  public constructor(private readonly size: number) { }
+}
+
 function mergeKLists(lists: Array<ListNode | null>): ListNode | null {
   return null;
 }
