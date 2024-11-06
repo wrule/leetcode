@@ -22,7 +22,7 @@ class LinkNode {
   }
 }
 
-class MinHeap<T extends { val: number }> {
+class MinHeap<T extends { num: number }> {
   public constructor(private readonly size: number) { }
 
   private heap: T[] = [];
@@ -31,7 +31,7 @@ class MinHeap<T extends { val: number }> {
     let index = this.heap.length - 1;
     while (index >= 1) {
       const parentIndex = Math.floor((index - 1) / 2);
-      if (this.heap[index].val < this.heap[parentIndex].val) {
+      if (this.heap[index].num < this.heap[parentIndex].num) {
         [this.heap[index], this.heap[parentIndex]] = [this.heap[parentIndex], this.heap[index]];
         index = parentIndex;
       } else {
@@ -47,10 +47,10 @@ class MinHeap<T extends { val: number }> {
       let minIndex = index;
       const left = 2 * index + 1;
       const right = 2 * index + 2;
-      if (left < this.heap.length && this.heap[left].val < this.heap[minIndex].val) {
+      if (left < this.heap.length && this.heap[left].num < this.heap[minIndex].num) {
         minIndex = left;
       }
-      if (right < this.heap.length && this.heap[right].val < this.heap[minIndex].val) {
+      if (right < this.heap.length && this.heap[right].num < this.heap[minIndex].num) {
         minIndex = right;
       }
       if (minIndex !== index) {
@@ -85,7 +85,7 @@ class MinHeap<T extends { val: number }> {
   }
 
   public Nums() {
-    return this.heap.map((item) => item.val);
+    return this.heap.map((item) => item.num);
   }
 
   public Heap() {
@@ -98,7 +98,7 @@ function mergeKLists(lists: Array<ListNode | null>): ListNode | null {
 }
 
 function test() {
-  const list = [4, 2, 1, 9, 11, 6, 23, 0.5].map((val) => ({ val }));
+  const list = [4, 2, 1, 9, 11, 6, 23, 0.5].map((num) => ({ num }));
   const heap = new MinHeap(10);
   list.forEach((item) => heap.Push(item));
   console.log(heap.Nums());
