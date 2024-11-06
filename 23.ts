@@ -77,7 +77,9 @@ class MinHeap<T extends { val: number }> {
       this.heap.unshift(newFirst);
       this.siftDown();
     } else if (this.heap.length >= 2) {
-      this.siftUp();
+      const last = this.heap.pop()!;
+      this.heap.unshift(last);
+      this.siftDown();
     }
     return first;
   }
