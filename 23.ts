@@ -41,6 +41,7 @@ class MinHeap<T extends { num: number }> {
   }
 
   private siftDown() {
+    if (this.heap.length < 2) return;
     let index = 0;
     while (true) {
       let minIndex = index;
