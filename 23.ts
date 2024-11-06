@@ -61,6 +61,14 @@ class MinHeap<T extends { num: number }> {
       }
     }
   }
+
+  public Nums() {
+    return this.heap.map((item) => item.num);
+  }
+
+  public Heap() {
+    return this.heap.slice();
+  }
 }
 
 function mergeKLists(lists: Array<ListNode | null>): ListNode | null {
