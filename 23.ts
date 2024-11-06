@@ -13,6 +13,15 @@
  * }
  */
 
+class ListNode {
+  val: number
+  next: ListNode | null
+  constructor(val?: number, next?: ListNode | null) {
+    this.val = (val===undefined ? 0 : val)
+    this.next = (next===undefined ? null : next)
+  }
+}
+
 class MinHeap<T extends { num: number }> {
   public constructor(private readonly size: number) { }
 
@@ -25,12 +34,19 @@ class MinHeap<T extends { num: number }> {
     }
   }
 
-  public Swap(item: T): T | null {
+  public Shift(): T | null {
     if (this.heap.length === 0) return null;
+    return this.heap.splice(0, 1)[0];
+  }
+
+  public ResetTop(item: T | null) {
     if (item) {
-      this.heap[0] = item;
-    } else {
-      this.heap.splice(0, 1);
+      this.heap.unshift(item);
+      this.siftDown();
+    } else if (this.heap.length >= 2) {
+      const last = this.heap.pop() as T;
+      this.heap.unshift(last);
+      this.siftDown();
     }
   }
 
@@ -53,10 +69,10 @@ class MinHeap<T extends { num: number }> {
       let smallest = index;
       const left = 2 * index + 1;
       const right = 2 * index + 2;
-      if (left < this.heap.length && this.heap[left][1] < this.heap[smallest][1]) {
+      if (left < this.heap.length && this.heap[left].num < this.heap[smallest].num) {
         smallest = left;
       }
-      if (right < this.heap.length && this.heap[right][1] < this.heap[smallest][1]) {
+      if (right < this.heap.length && this.heap[right].num < this.heap[smallest].num) {
         smallest = right;
       }
       if (smallest !== index) {
@@ -67,22 +83,20 @@ class MinHeap<T extends { num: number }> {
       }
     }
   }
-
-  public Result() {
-    return this.heap.map((tup) => tup[1]);
-  }
-}
-
-class ListNode {
-  val: number
-  next: ListNode | null
-  constructor(val?: number, next?: ListNode | null) {
-    this.val = (val===undefined ? 0 : val)
-    this.next = (next===undefined ? null : next)
-  }
 }
 
 function mergeKLists(lists: Array<ListNode | null>): ListNode | null {
   let result = new ListNode();
+  let current = result;
+  const fLists = lists.filter((list) => list) as ListNode[];
+  const heap = new MinHeap<{ index: number, num: number }>(fLists.length);
+  fLists.forEach((first, index) => {
+    heap.Push({ index, num: first.val });
+  });
+  while (true) {
+    const newMinItem = heap.Shift();
+    if (!newMinItem) break;
+    current.val = newMinItem.num;
+  }
   return result;
 }
