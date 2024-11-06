@@ -13,20 +13,24 @@
  * }
  */
 
-class NumberMinHeap {
+class MinHeap<T extends { num: number }> {
   public constructor(private readonly size: number) { }
 
-  private heap: number[] = [];
+  private heap: T[] = [];
 
-  public Add(num: number) {
+  public Push(item: T) {
     if (this.heap.length < this.size) {
-      this.heap.push(num);
+      this.heap.push(item);
       this.siftUp();
+    }
+  }
+
+  public Swap(item: T): T | null {
+    if (this.heap.length === 0) return null;
+    if (item) {
+      this.heap[0] = item;
     } else {
-      if (num > this.heap[0]) {
-        this.heap[0] = num;
-        this.siftDown();
-      }
+      this.heap.splice(0, 1);
     }
   }
 
@@ -34,7 +38,7 @@ class NumberMinHeap {
     let index = this.heap.length - 1;
     while (index > 0) {
       const parentIndex = Math.floor((index - 1) / 2);
-      if (this.heap[index] < this.heap[parentIndex]) {
+      if (this.heap[index].num < this.heap[parentIndex].num) {
         [this.heap[index], this.heap[parentIndex]] = [this.heap[parentIndex], this.heap[index]];
         index = parentIndex;
       } else {
@@ -49,10 +53,10 @@ class NumberMinHeap {
       let smallest = index;
       const left = 2 * index + 1;
       const right = 2 * index + 2;
-      if (left < this.heap.length && this.heap[left] < this.heap[smallest]) {
+      if (left < this.heap.length && this.heap[left][1] < this.heap[smallest][1]) {
         smallest = left;
       }
-      if (right < this.heap.length && this.heap[right] < this.heap[smallest]) {
+      if (right < this.heap.length && this.heap[right][1] < this.heap[smallest][1]) {
         smallest = right;
       }
       if (smallest !== index) {
@@ -62,6 +66,10 @@ class NumberMinHeap {
         break;
       }
     }
+  }
+
+  public Result() {
+    return this.heap.map((tup) => tup[1]);
   }
 }
 
