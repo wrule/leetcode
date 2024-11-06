@@ -98,10 +98,27 @@ function mergeKLists(lists: Array<ListNode | null>): ListNode | null {
 }
 
 function test() {
-  const list = [4, 2, 1, 9, 11, 6, 23, 0.5].map((num) => ({ num }));
-  const heap = new MinHeap(10);
-  list.forEach((item) => heap.Push(item));
-  console.log(heap.Nums());
+  const lists = [
+    [1, 2, 3, 4, 5, 6, 7, 8].map((num) => ({ index: 0, num })),
+    [0.5, 7, 11, 12, 12, 9].map((num) => ({ index: 1, num })),
+    [5.2, 10, 10.5, 11, 20, 21, 100, 111].map((num) => ({ index: 2, num })),
+  ];
+  const heap = new MinHeap<{ index: number, num: number }>(lists.length);
+  lists.forEach((list) => {
+    heap.Push(list.shift()!);
+  });
+  const result: number[] = [];
+  while (true) {
+    const min = heap.Swap((first) => {
+      return lists[first.index].shift() ?? null;
+    });
+    if (min) {
+      result.push(min.num);
+    } else {
+      break;
+    }
+  }
+  console.log(result);
 }
 
 test();
