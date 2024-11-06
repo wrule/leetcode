@@ -90,7 +90,7 @@ function mergeKLists(lists: Array<ListNode | null>): ListNode | null {
   let current = result;
   lists = lists.filter((list) => list);
   const heap = new MinHeap<{ index: number, num: number }>(lists.length);
-  (lists ).forEach((first, index) => heap.Push({ index, num: first!.val }));
+  lists.forEach((first, index) => heap.Push({ index, num: first!.val }));
   while (true) {
     const newMinItem = heap.Shift();
     if (!newMinItem) break;
