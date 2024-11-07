@@ -18,3 +18,13 @@ function DFS(node: GNode) {
     });
   }
 }
+
+function BFS(node: GNode) {
+  const nodeSet = new Set<GNode>();
+  const stack: GNode[] = [node];
+  nodeSet.add(node);
+  while (stack.length > 0) {
+    const current = stack.pop()!;
+    console.log(current.value);
+  }
+}
