@@ -1,6 +1,6 @@
 
 
-function main() {
+function test() {
   const a = new Promise<number>((resolve, reject) => {
     setTimeout(() => {
       resolve(1234);
@@ -11,4 +11,4 @@ function main() {
   a.then(console.log);
 }
 
-main();
+test();
