@@ -12,22 +12,11 @@ class MyPromise<T> {
       reject: (reason?: any) => void,
     ) => void,
   ) {
-    const resolve = (value: T | PromiseLike<T>) => {
-      if (this.state === MyPromiseState.PENDING) {
-        this.state = MyPromiseState.FULFILLED;
-        this.value = value;
-      }
-    };
-    const reject = (reason?: any) => {
-      if (this.state === MyPromiseState.PENDING) {
-        this.state = MyPromiseState.REJECTED;
-      }
-    };
     try {
-      this.executor(resolve, reject);
+      this.executor(this.resolve, this.reject);
     } catch (error) {
       this.state = MyPromiseState.REJECTED;
-      reject(error);
+      this.reject(error);
     }
   }
 
