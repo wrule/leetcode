@@ -1,4 +1,10 @@
 
+enum MyPromiseState {
+  PENDING = 'PENDING',
+  FULFILLED = 'FULFILLED',
+  REJECTED = 'REJECTED',
+}
+
 class MyPromise<T> {
   public constructor(
     private readonly executor: (
@@ -8,4 +14,6 @@ class MyPromise<T> {
   ) {
 
   }
+
+  private state = MyPromiseState.PENDING;
 }
