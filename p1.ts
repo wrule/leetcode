@@ -33,6 +33,21 @@ class MyPromise<T> {
 
   private state = MyPromiseState.PENDING;
   private value!: T | PromiseLike<T>;
+  private error: any = null;
+
+  private resolve(value: T | PromiseLike<T>) {
+    if (this.state === MyPromiseState.PENDING) {
+      this.state = MyPromiseState.FULFILLED;
+      this.value = value;
+    }
+  }
+
+  private reject(reason?: any) {
+    if (this.state === MyPromiseState.PENDING) {
+      this.state = MyPromiseState.REJECTED;
+      this.error = reason;
+    }
+  }
 
   public then(
     onfulfilled?: ((value: T) => T | PromiseLike<T>) | null,
@@ -54,8 +69,9 @@ class MyPromise<T> {
   }
 }
 
-const a = new Promise<number>(null as any);
-// a.finally()
+const a = new Promise<number>((resolve, reject) => {
+  setTimeout(() => {
+    reject('');
+  }, 1000);
+});
 
-// const b = new Promise<string>(null as any);
-// b.then((va))
