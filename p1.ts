@@ -29,7 +29,7 @@ class MyPromise<T> {
       this.state = MyPromiseState.FULFILLED;
       this.value = value;
       this.onfulfilledList.forEach((onfulfilled) => {
-
+        onfulfilled();
       });
     }
   }
@@ -39,7 +39,7 @@ class MyPromise<T> {
       this.state = MyPromiseState.REJECTED;
       this.reason = reason;
       this.onrejectedList.forEach((onrejected) => {
-
+        onrejected(this.reason);
       });
     }
   }
