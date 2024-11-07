@@ -24,7 +24,14 @@ function BFS(node: GNode) {
   const stack: GNode[] = [node];
   nodeSet.add(node);
   while (stack.length > 0) {
-    const current = stack.pop()!;
-    console.log(current.value);
+    const length = stack.length;
+    for (let i = 0; i < length; ++i) {
+      const item = stack.shift()!;
+      console.log(item.value);
+      item.neighbors.filter((neighbor) => !nodeSet.has(neighbor)).forEach((neighbor) => {
+        stack.push(neighbor);
+        nodeSet.add(neighbor);
+      });
+    }
   }
 }
