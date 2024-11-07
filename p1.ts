@@ -25,13 +25,13 @@ class MyPromise<T> {
 
   private resolve(value: T | PromiseLike<T>) {
     if (this.state === MyPromiseState.PENDING) {
-
+      this.state = MyPromiseState.FULFILLED;
     }
   }
 
   private reject(reason?: any) {
     if (this.state === MyPromiseState.PENDING) {
-
+      this.state = MyPromiseState.REJECTED;
     }
   }
 
