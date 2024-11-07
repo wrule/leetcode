@@ -62,26 +62,13 @@ class MyPromise<T> {
 
 function test() {
   // const b = new Promise<number>
-  const a = new MyPromise<number>((resolve, reject) => {
+  const a = new Promise<number>((resolve, reject) => {
     setTimeout(() => {
       resolve(1234);
     }, 500);
   });
-  // a.then(console.log);
-  // a.then(console.log);
-  // a.then(console.log);
-  a.then((value) => {
-    console.log(value);
-    return value;
-  });
-  a.then((value) => {
-    console.log(value);
-    return value;
-  });
-  a.then((value) => {
-    console.log(value);
-    return value;
-  });
+  const log = console.log;
+  a.then(log);
 }
 
 test();
