@@ -16,7 +16,10 @@ class MyPromise<T> {
     ) => void,
   ) {
     try {
-      this.executor(this.resolve, this.reject);
+      this.executor(
+        (value) => this.resolve(value),
+        (reason) => this.reject(reason),
+      );
     } catch (error) {
       this.reject(error);
     }
