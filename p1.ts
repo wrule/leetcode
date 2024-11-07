@@ -15,7 +15,11 @@ class MyPromise<T> {
       reject: (reason?: any) => void,
     ) => void,
   ) {
-
+    try {
+      this.executor(this.resolve, this.reject);
+    } catch (error) {
+      this.reject(error);
+    }
   }
 
   private state = MyPromiseState.PENDING;
