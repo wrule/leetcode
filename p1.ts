@@ -30,9 +30,12 @@ class MyPromise<T> {
     throw '';
   }
 
-  public finally() {
-
+  public finally(
+    onfinally?: (() => void) | null,
+  ): Promise<T> {
+    throw '';
   }
 }
 
 const a = new Promise<number>(null as any);
+// a.finally()
