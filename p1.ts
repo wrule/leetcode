@@ -11,7 +11,7 @@ class MyPromise<T> {
   }
 
   public then(
-    onfulfilled?: ((value: number) => number | PromiseLike<number>) | null,
+    onfulfilled?: ((value: T) => T | PromiseLike<T>) | null,
     onrejected?: ((reason: any) => PromiseLike<never>) | null,
   ) {
 
