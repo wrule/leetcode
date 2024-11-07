@@ -19,13 +19,17 @@ class MyPromise<T> {
   }
 
   private state = MyPromiseState.PENDING;
-
+  private value!: T | PromiseLike<T>;
   private onfulfilledList: OnFulfilled<T>[] = [];
   private onrejectedList: OnRejected<T>[] = [];
 
   private resolve(value: T | PromiseLike<T>) {
     if (this.state === MyPromiseState.PENDING) {
       this.state = MyPromiseState.FULFILLED;
+      this.value = value;
+      this.onfulfilledList.forEach((onfulfilled) => {
+
+      });
     }
   }
 
