@@ -1,5 +1,8 @@
 
 
+type OnFulfilled<T> = (value: T) => T | PromiseLike<T>;
+type OnRejected<T> = (reason: any) => PromiseLike<never>;
+
 class MyPromise<T> {
   public constructor(
     private readonly executor: (
@@ -11,8 +14,8 @@ class MyPromise<T> {
   }
 
   public then(
-    onfulfilled?: ((value: T) => T | PromiseLike<T>) | null,
-    onrejected?: ((reason: any) => PromiseLike<never>) | null,
+    onfulfilled?: OnFulfilled<T> | null,
+    onrejected?: OnRejected<T> | null,
   ) {
 
   }
