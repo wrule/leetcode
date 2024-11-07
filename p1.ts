@@ -1,4 +1,9 @@
 
+enum MyPromiseState {
+  PENDING = 'PENDING',
+  FULFILLED = 'FULFILLED',
+  REJECTED = 'REJECTED',
+};
 
 type OnFulfilled<T> = (value: T) => T | PromiseLike<T>;
 type OnRejected<T> = (reason: any) => PromiseLike<never>;
