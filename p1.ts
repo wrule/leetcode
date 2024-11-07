@@ -18,15 +18,21 @@ class MyPromise<T> {
 
   }
 
+  private state = MyPromiseState.PENDING;
+
   private onfulfilledList: OnFulfilled<T>[] = [];
   private onrejectedList: OnRejected<T>[] = [];
 
   private resolve(value: T | PromiseLike<T>) {
+    if (this.state === MyPromiseState.PENDING) {
 
+    }
   }
 
   private reject(reason?: any) {
+    if (this.state === MyPromiseState.PENDING) {
 
+    }
   }
 
   public then(
