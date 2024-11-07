@@ -13,11 +13,15 @@ class MyPromise<T> {
 
   }
 
+  private onfulfilledList: OnFulfilled<T>[] = [];
+  private onrejectedList: OnRejected<T>[] = [];
+
   public then(
     onfulfilled?: OnFulfilled<T> | null,
     onrejected?: OnRejected<T> | null,
   ) {
-
+    if (onfulfilled) this.onfulfilledList.push(onfulfilled);
+    if (onrejected) this.onrejectedList.push(onrejected);
   }
 }
 
