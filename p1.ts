@@ -38,6 +38,9 @@ class MyPromise<T> {
     if (this.state === MyPromiseState.PENDING) {
       this.state = MyPromiseState.REJECTED;
       this.reason = reason;
+      this.onrejectedList.forEach((onrejected) => {
+
+      });
     }
   }
 
