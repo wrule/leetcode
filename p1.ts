@@ -12,7 +12,18 @@ class MyPromise<T> {
       reject: (reason?: any) => void,
     ) => void,
   ) {
-
+    const resolve = (value: T | PromiseLike<T>) => {
+      this.state = MyPromiseState.FULFILLED;
+    };
+    const reject = (reason?: any) => {
+      this.state = MyPromiseState.REJECTED;
+    };
+    try {
+      this.executor(resolve, reject);
+    } catch (error) {
+      this.state = MyPromiseState.REJECTED;
+      reject(error);
+    }
   }
 
   private state = MyPromiseState.PENDING;
