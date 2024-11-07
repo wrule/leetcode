@@ -78,10 +78,13 @@ const a = new Promise<number>((resolve, reject) => {
 async function main() {
   a.then((result) => {
     console.log('then1', result);
+    throw '新错误1';
   }, (reason) => {
     console.log('then2', reason);
+    throw '新错误2';
   }).catch((reason) => {
     console.log('catch', reason);
+    throw '新错误3';
   }).finally(() => {
     console.log('finally');
   });
