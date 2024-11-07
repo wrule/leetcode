@@ -20,12 +20,14 @@ class MyPromise<T> {
   public then(
     onfulfilled?: ((value: T) => T | PromiseLike<T>) | null,
     onrejected?: ((reason: any) => PromiseLike<never>) | null,
-  ) {
-
+  ): Promise<T> {
+    throw '';
   }
 
-  public catch() {
-
+  public catch(
+    onrejected?: ((reason: any) => PromiseLike<never>) | null,
+  ): Promise<T> {
+    throw '';
   }
 
   public finally() {
@@ -34,4 +36,3 @@ class MyPromise<T> {
 }
 
 const a = new Promise<number>(null as any);
-a.then()
