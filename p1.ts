@@ -73,7 +73,15 @@ function test() {
   a.then((value) => {
     console.log(value);
     return value;
-  })
+  });
+  a.then((value) => {
+    console.log(value);
+    return value;
+  });
+  a.then((value) => {
+    console.log(value);
+    return value;
+  });
 }
 
 test();
