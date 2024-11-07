@@ -38,11 +38,19 @@ class MyPromise<T> {
     }
   }
 
+  private then_onfulfilled: (((value: T) => T | PromiseLike<T>) | null)[] = [];
+  private then_onrejected: (((reason: any) => PromiseLike<never>) | null)[] = [];
   public then(
     onfulfilled?: ((value: T) => T | PromiseLike<T>) | null,
     onrejected?: ((reason: any) => PromiseLike<never>) | null,
-  ): Promise<T> {
-    throw '';
+  ): MyPromise<T> {
+    if (onfulfilled) {
+      this.then_onfulfilled.push(onfulfilled);
+    }
+    if (onrejected) {
+      this.then_onrejected.push(onrejected);
+    }
+    return this;
   }
 
   public catch(
