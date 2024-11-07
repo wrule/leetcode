@@ -39,3 +39,6 @@ class MyPromise<T> {
 
 const a = new Promise<number>(null as any);
 // a.finally()
+
+// const b = new Promise<string>(null as any);
+// b.then((va))
