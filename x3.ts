@@ -21,15 +21,15 @@ function DFS(node: GNode) {
 
 function BFS(node: GNode) {
   const nodeSet = new Set<GNode>();
-  const stack: GNode[] = [node];
+  const queue: GNode[] = [node];
   nodeSet.add(node);
-  while (stack.length > 0) {
-    const length = stack.length;
+  while (queue.length > 0) {
+    const length = queue.length;
     for (let i = 0; i < length; ++i) {
-      const item = stack.shift()!;
+      const item = queue.shift()!;
       console.log(item.value);
       item.neighbors.filter((neighbor) => !nodeSet.has(neighbor)).forEach((neighbor) => {
-        stack.push(neighbor);
+        queue.push(neighbor);
         nodeSet.add(neighbor);
       });
     }
