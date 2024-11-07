@@ -9,6 +9,3 @@ class MyPromise<T> {
 
   }
 }
-
-const a = new Promise<number>()
-// executor: (resolve: (value: number | PromiseLike<number>) => void, reject: (reason?: any) => void) => void
