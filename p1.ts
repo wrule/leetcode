@@ -16,6 +16,14 @@ class MyPromise<T> {
   private onfulfilledList: OnFulfilled<T>[] = [];
   private onrejectedList: OnRejected<T>[] = [];
 
+  private resolve(value: T | PromiseLike<T>) {
+
+  }
+
+  private reject(reason?: any) {
+
+  }
+
   public then(
     onfulfilled?: OnFulfilled<T> | null,
     onrejected?: OnRejected<T> | null,
