@@ -3,7 +3,7 @@
 class MyPromise<T> {
   public constructor(
     private readonly executor: (
-      resolve: (value: number | PromiseLike<number>) => void,
+      resolve: (value: T | PromiseLike<T>) => void,
       reject: (reason?: any) => void,
     ) => void,
   ) {
