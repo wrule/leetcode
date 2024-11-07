@@ -13,10 +13,15 @@ class MyPromise<T> {
     ) => void,
   ) {
     const resolve = (value: T | PromiseLike<T>) => {
-      this.state = MyPromiseState.FULFILLED;
+      if (this.state === MyPromiseState.PENDING) {
+        this.state = MyPromiseState.FULFILLED;
+        this.value = value;
+      }
     };
     const reject = (reason?: any) => {
-      this.state = MyPromiseState.REJECTED;
+      if (this.state === MyPromiseState.PENDING) {
+        this.state = MyPromiseState.REJECTED;
+      }
     };
     try {
       this.executor(resolve, reject);
@@ -27,6 +32,7 @@ class MyPromise<T> {
   }
 
   private state = MyPromiseState.PENDING;
+  private value!: T | PromiseLike<T>;
 
   public then(
     onfulfilled?: ((value: T) => T | PromiseLike<T>) | null,
