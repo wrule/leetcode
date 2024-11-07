@@ -5,13 +5,13 @@ enum MyPromiseState {
   REJECTED = 'REJECTED',
 };
 
-type OnFulfilled<T> = (value: T) => T | PromiseLike<T>;
+type OnFulfilled<T> = (value: T) => T;
 type OnRejected<T> = (reason: any) => PromiseLike<never>;
 
 class MyPromise<T> {
   public constructor(
     private readonly executor: (
-      resolve: (value: T | PromiseLike<T>) => void,
+      resolve: (value: T) => void,
       reject: (reason?: any) => void,
     ) => void,
   ) {
@@ -19,12 +19,12 @@ class MyPromise<T> {
   }
 
   private state = MyPromiseState.PENDING;
-  private value!: T | PromiseLike<T>;
+  private value!: T;
   private reason: any;
   private onfulfilledList: OnFulfilled<T>[] = [];
   private onrejectedList: OnRejected<T>[] = [];
 
-  private resolve(value: T | PromiseLike<T>) {
+  private resolve(value: T) {
     if (this.state === MyPromiseState.PENDING) {
       this.state = MyPromiseState.FULFILLED;
       this.value = value;
