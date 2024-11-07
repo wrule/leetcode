@@ -16,4 +16,19 @@ class MyPromise<T> {
   }
 
   private state = MyPromiseState.PENDING;
+
+  public then(onfulfilled?: ((value: number) => number | PromiseLike<number>) | null | undefined, onrejected?: ((reason: any) => PromiseLike<never>) | null | undefined) {
+
+  }
+
+  public catch() {
+
+  }
+
+  public finally() {
+
+  }
 }
+
+const a = new Promise<number>(null as any);
+a.then()
