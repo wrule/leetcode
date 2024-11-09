@@ -19,8 +19,10 @@ function Human() {
 const a = new Animal();
 const b = new Dog();
 const c = new Human();
-b.__proto__ = a;
-c.__proto__ = b;
+// b.__proto__ = a;
+// c.__proto__ = b;
+Object.setPrototypeOf(b, a);
+Object.setPrototypeOf(c, b);
 console.log(c.canWork);
 console.log(c.canBark);
 console.log(c.canEat);
