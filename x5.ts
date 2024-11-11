@@ -15,4 +15,7 @@ function selectionSort(numList: number[]) {
       [numList[minIndex], numList[i]] = [numList[i], numList[minIndex]];
     }
   }
+  return numList;
 }
+
+console.log(selectionSort([5, 3, 2, 4, 1]));
