@@ -5,14 +5,11 @@
 function insertionSort(numList: number[]) {
   for (let i = 1; i < numList.length; ++i) {
     const current = numList[i];
-    for (let j = i - 1; j >= 0; --j) {
-      if (numList[j] > current) {
-        numList[j + 1] = numList[j];
-      } else {
-        numList[j + 1] = current;
-        break;
-      }
+    let j = i - 1;
+    for (; j >= 0 && numList[j] > current; --j) {
+      numList[j + 1] = numList[j];
     }
+    numList[j + 1] = current;
   }
   return numList;
 }
