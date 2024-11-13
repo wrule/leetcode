@@ -9,6 +9,19 @@ function mergeSort(numList: number[]): number[] {
   const rightStartIndex = Math.floor(numList.length / 2);
   const leftList = mergeSort(numList.slice(0, rightStartIndex));
   const rightList = mergeSort(numList.slice(rightStartIndex));
+  const length = Math.max(leftList.length, rightList.length);
+  const result: number[] = [];
+  for (let i = 0; i < length; ++i) {
+    const leftNum = leftList[i];
+    const rightNum = rightList[i];
+    if (leftNum !== null && rightNum !== null) {
+      if (leftNum < rightNum)
+    } else if (leftNum == null) {
+
+    } else {
+
+    }
+  }
   return leftList.concat(rightList);
 }
 
