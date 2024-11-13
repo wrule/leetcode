@@ -3,8 +3,6 @@
 // console.log("Sorted array is:", mergeSort(array));
 
 function mergeSort(numList: number[]): number[] {
-  console.log(numList);
-  console.log();
   if (numList.length <= 1) return numList.slice();
   const rightStartIndex = Math.floor(numList.length / 2);
   const leftList = mergeSort(numList.slice(0, rightStartIndex));
@@ -23,9 +21,12 @@ function mergeSort(numList: number[]): number[] {
         rightIndex++;
         result.push(rightNum);
       }
+    } else if (leftNum == null) {
+      rightIndex++;
+      result.push(rightNum);
     } else {
-      result.push(leftNum ?? rightNum);
-      break;
+      leftIndex++;
+      result.push(leftNum);
     }
   }
   return result;
