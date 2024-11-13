@@ -9,20 +9,26 @@ function mergeSort(numList: number[]): number[] {
   const rightStartIndex = Math.floor(numList.length / 2);
   const leftList = mergeSort(numList.slice(0, rightStartIndex));
   const rightList = mergeSort(numList.slice(rightStartIndex));
-  const length = Math.max(leftList.length, rightList.length);
+
   const result: number[] = [];
-  for (let i = 0; i < length; ++i) {
-    const leftNum = leftList[i];
-    const rightNum = rightList[i];
+  let leftIndex = 0, rightIndex = 0;
+  while (leftIndex < leftList.length || rightIndex < rightList.length) {
+    const leftNum = leftList[leftIndex];
+    const rightNum = rightList[rightIndex];
     if (leftNum !== null && rightNum !== null) {
-      if (leftNum < rightNum)
-    } else if (leftNum == null) {
-
+      if (leftNum < rightNum) {
+        leftIndex++;
+        result.push(leftNum);
+      } else {
+        rightIndex++;
+        result.push(rightNum);
+      }
     } else {
-
+      result.push(leftNum ?? rightNum);
+      break;
     }
   }
-  return leftList.concat(rightList);
+  return result;
 }
 
 console.log(mergeSort([4, 2, 5, 1, 6, 3]));
