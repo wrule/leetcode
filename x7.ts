@@ -15,7 +15,7 @@ function mergeSort(numList: number[]): number[] {
   while (leftIndex < leftList.length || rightIndex < rightList.length) {
     const leftNum = leftList[leftIndex];
     const rightNum = rightList[rightIndex];
-    if (leftNum !== null && rightNum !== null) {
+    if (leftNum != null && rightNum != null) {
       if (leftNum < rightNum) {
         leftIndex++;
         result.push(leftNum);
