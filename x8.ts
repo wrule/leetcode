@@ -5,12 +5,12 @@
 
 function quickSort(numList: number[]) {
   console.log('init', numList);
-  const randomIndex = 8;
+  const randomIndex = Math.floor(Math.random() * numList.length);
   const randomNum = numList[randomIndex];
   [numList[0], numList[randomIndex]] = [numList[randomIndex], numList[0]];
   console.log(randomIndex, randomNum);
   console.log('swap', numList);
-  let leftIndex = 0, rightIndex = numList.length - 1;
+  let leftIndex = 1, rightIndex = numList.length - 1;
   while (leftIndex < rightIndex) {
     while (leftIndex < rightIndex && numList[rightIndex] >= randomNum) rightIndex--;
     while (leftIndex < rightIndex && numList[leftIndex] <= randomNum) leftIndex++;
