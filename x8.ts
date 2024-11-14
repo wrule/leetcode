@@ -15,6 +15,7 @@ function quickSort(numList: number[]) {
       [numList[leftIndex], numList[rightIndex]] = [numList[rightIndex], numList[leftIndex]];
     }
   }
+  console.log(leftIndex);
   numList[randomIndex] = numList[leftIndex];
   numList[leftIndex] = randomNum;
   return numList;
