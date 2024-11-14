@@ -15,10 +15,11 @@ function quickSort(numList: number[]) {
       [numList[leftIndex], numList[rightIndex]] = [numList[rightIndex], numList[leftIndex]];
     }
   }
-  console.log(leftIndex);
   numList[randomIndex] = numList[leftIndex];
   numList[leftIndex] = randomNum;
   return numList;
 }
 
-console.log(quickSort([5, 3, 7, 6, 2, 9]));
+console.log(quickSort([5, 3, 7, 6, 2, 9, 11, 0, 8, 4]));
+console.log([5, 3, 7, 6, 2, 9, 11, 0, 8, 4]);
+// console.log(quickSort([5, 3, 7, 6, 2, 9, 11, 0, 8, 4]));
