@@ -7,8 +7,18 @@
 
 function sequentialSearch(numList: number[], target: number) {
   let leftIndex = 0, rightIndex = numList.length - 1;
-  let middleIndex = leftIndex + Math.floor((rightIndex - leftIndex) / 2);
-  while (true) {
+  while (leftIndex <= rightIndex) {
+    const middleIndex = leftIndex + Math.floor((rightIndex - leftIndex) / 2);
     const middleNum = numList[middleIndex];
+    if (target < middleNum) {
+      rightIndex = middleIndex - 1;
+    } else if (target > middleNum) {
+      leftIndex = middleIndex + 1;
+    } else {
+      return middleIndex;
+    }
   }
+  return -1;
 }
+
+console.log(sequentialSearch([1, 2, 3, 4, 5, 6, 7, 8, 9], 9));
