@@ -5,7 +5,7 @@
 // console.log(sequentialSearch(arr, 10)); // 输出: -1
 
 
-function sequentialSearch(numList: number[], target: number) {
+function binarySearch(numList: number[], target: number) {
   let leftIndex = 0, rightIndex = numList.length - 1;
   while (leftIndex <= rightIndex) {
     const middleIndex = leftIndex + Math.floor((rightIndex - leftIndex) / 2);
@@ -21,4 +21,4 @@ function sequentialSearch(numList: number[], target: number) {
   return -1;
 }
 
-console.log(sequentialSearch([1, 2, 3, 4, 5, 6, 7, 8, 9], 9));
+console.log(binarySearch([1, 2, 3, 4, 5, 6, 7, 8, 9], 9));
