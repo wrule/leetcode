@@ -1,16 +1,15 @@
 
 function curry(fn: Function) {
-  const nextCurry = (...args: number[]) => {
+  const nextCurry = (...args: any[]) => {
     if (args.length >= fn.length) {
       return fn(...args);
     }
-    return (...nextArgs: number[]) => {
+    return (...nextArgs: any[]) => {
       return nextCurry(...args, ...nextArgs);
     };
   };
   return nextCurry;
 }
-
 
 function sum(a: number, b: number, c: number) {
   return a + b + c;
