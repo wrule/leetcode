@@ -21,6 +21,10 @@ class ListNode {
   }
 }
 
+function mergeTwoListsRecursion(list1: ListNode | null, list2: ListNode | null): ListNode | null {
+  return null;
+}
+
 function mergeTwoLists(list1: ListNode | null, list2: ListNode | null): ListNode | null {
   const root = new ListNode();
   let current = root;
