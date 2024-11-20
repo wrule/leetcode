@@ -17,7 +17,17 @@
  */
 
 function guessNumber(n: number): number {
+  let leftNum = 1, rightNum = n;
+  while (leftNum <= rightNum) {
+    const middleNum = leftNum + Math.floor((rightNum - leftNum) / 2);
+    const guessResult = guess(middleNum);
+    if (guessResult > 0) {
+      leftNum = middleNum + 1;
+    } else if (guessResult < 0) {
+      rightNum = middleNum - 1;
+    } else {
+      return middleNum;
+    }
+  }
   return 0;
 }
-
-
