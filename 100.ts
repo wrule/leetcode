@@ -35,6 +35,12 @@ function isSameTree(p: TreeNode | null, q: TreeNode | null): boolean {
       const current1 = stack1.pop()!;
       const current2 = stack2.pop()!;
       if (current1.val === current2.val) {
+        if (
+          !!current1.left !== !!current2.left ||
+          !!current1.right !== !!current2.right
+        ) {
+          return false;
+        }
         if (current1.right) stack1.push(current1.right);
         if (current1.left) stack1.push(current1.left);
         if (current2.right) stack2.push(current2.right);
