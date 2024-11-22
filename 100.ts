@@ -28,5 +28,12 @@ class TreeNode {
 }
 
 function isSameTree(p: TreeNode | null, q: TreeNode | null): boolean {
-    
+  if (p && q) {
+    let current1 = p;
+    let current2 = q;
+  } else if (!p && !q) {
+    return true;
+  } else {
+    return false;
+  }
 }
