@@ -31,7 +31,7 @@ function isSameTree(p: TreeNode | null, q: TreeNode | null): boolean {
   if (p && q) {
     const stack1 = [p];
     const stack2 = [q];
-    while (stack1.length >= 1 || stack2.length >= 1) {
+    while (stack1.length >= 1 && stack2.length >= 1) {
       const current1 = stack1.pop();
       const current2 = stack2.pop();
       if ((current1 && current2) && (current1.val === current2.val)) {
@@ -43,7 +43,7 @@ function isSameTree(p: TreeNode | null, q: TreeNode | null): boolean {
         return false;
       }
     }
-    return true;
+    return stack1.length === stack2.length;
   } else if (!p && !q) {
     return true;
   } else {
