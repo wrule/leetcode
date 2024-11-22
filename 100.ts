@@ -29,8 +29,25 @@ class TreeNode {
 
 function isSameTree(p: TreeNode | null, q: TreeNode | null): boolean {
   if (p && q) {
-    let current1 = p;
-    let current2 = q;
+    const stack1 = [p];
+    const stack2 = [q];
+    while (stack1.length >= 1 || stack2.length >= 1) {
+      const current1 = stack1.pop();
+      const current2 = stack2.pop();
+      if (current1 && current2) {
+        if (current1.val === current2.val) {
+          if (current1.right) stack1.push(current1.right);
+          if (current1.left) stack1.push(current1.left);
+          if (current2.right) stack1.push(current2.right);
+          if (current2.left) stack1.push(current2.left);
+        } else {
+          return false;
+        }
+      } else {
+        return false;
+      }
+    }
+    return true;
   } else if (!p && !q) {
     return true;
   } else {
