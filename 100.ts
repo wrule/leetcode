@@ -37,8 +37,8 @@ function isSameTree(p: TreeNode | null, q: TreeNode | null): boolean {
       if ((current1 && current2) && (current1.val === current2.val)) {
         if (current1.right) stack1.push(current1.right);
         if (current1.left) stack1.push(current1.left);
-        if (current2.right) stack1.push(current2.right);
-        if (current2.left) stack1.push(current2.left);
+        if (current2.right) stack2.push(current2.right);
+        if (current2.left) stack2.push(current2.left);
       } else {
         return false;
       }
