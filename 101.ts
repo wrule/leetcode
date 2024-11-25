@@ -26,5 +26,10 @@ class TreeNode {
 }
 
 function isSymmetric(root: TreeNode | null): boolean {
-  return false;
+  if (!root) return true;
+  const queue = [root.left, root.right].filter((node) => node);
+  while (queue.length >= 1) {
+    
+  }
+  return true;
 }
