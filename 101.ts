@@ -68,3 +68,7 @@ function isSymmetric(root: TreeNode | null): boolean {
   }
   return true;
 }
+
+function isSymmetricRecursion(root: TreeNode | null): boolean {
+  return true;
+}
