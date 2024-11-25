@@ -69,6 +69,14 @@ function isSymmetric(root: TreeNode | null): boolean {
   return true;
 }
 
+function isMirror(node1: TreeNode | null, node2: TreeNode | null): boolean {
+  if (!node1 && !node2) return true;
+  if (!node1 || !node2) return false;
+  if (node1.val !== node2.val) return false;
+  return isMirror(node1.left, node2.right) && isMirror(node1.right, node2.left);
+}
+
 function isSymmetricRecursion(root: TreeNode | null): boolean {
-  return true;
+  if (!root) return true;
+  return isMirror(root.left, root.right);
 }
