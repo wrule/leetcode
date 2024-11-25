@@ -57,5 +57,14 @@ function isSameTree(p: TreeNode | null, q: TreeNode | null): boolean {
 
 function isSymmetric(root: TreeNode | null): boolean {
   if (!root) return true;
-  return isSameTree(root.left, root.right);
+  const queue = [[root.left, root.right]];
+  while (queue.length >= 1) {
+    const [left, right] = queue.shift()!;
+    if (!left && !right) continue;
+    if (!left || !right) return false;
+    if (left.val !== right.val) return false;
+    queue.push([left.left, right.right]);
+    queue.push([left.right, right.left]);
+  }
+  return true;
 }
