@@ -3,8 +3,15 @@
 
 function climbStairs(n: number): number {
   if (n === 1) return 1;
-  else if (n === 2) return 2;
-  return climbStairs(n - 1) + climbStairs(n - 2) + 1;
+  if (n === 2) return 2;
+  let prev1 = 1, prev2 = 2;
+  let result = 0;
+  for (let i = 3; i <= n; ++i) {
+    result = prev1 + prev2;
+    prev1 = prev2;
+    prev2 = result;
+  }
+  return result;
 }
 
 console.log(climbStairs(3));
