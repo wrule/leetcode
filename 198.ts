@@ -13,7 +13,19 @@ function rob(nums: number[]): number {
 }
 
 function rob2(nums: number[]): number {
-  return 0;
+  let max1 = 0, max2 = 0;
+  for (let i = 0; i < nums.length; ++i) {
+    if (i === 0) {
+      max1 = nums[i];
+      max2 = 0;
+    } else {
+      const pmax1 = max1, pmax2 = max2;
+      max1 = pmax2 + nums[i];
+      max2 = pmax1;
+    }
+    // console.log(max1, max2);
+  }
+  return Math.max(max1, max2);
 }
 
 console.log(rob2([2, 7, 9, 3, 1]));
