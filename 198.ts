@@ -12,4 +12,8 @@ function rob(nums: number[]): number {
   }
 }
 
-console.log(rob([2, 7, 9, 3, 1]));
+function rob2(nums: number[]): number {
+  return 0;
+}
+
+console.log(rob2([2, 7, 9, 3, 1]));
