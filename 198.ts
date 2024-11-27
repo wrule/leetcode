@@ -4,11 +4,12 @@
 function rob(nums: number[]): number {
   if (nums.length === 0) return 0;
   else if (nums.length === 1) return nums[0];
-  else if (nums.length === 2) return Math.max(nums[0], nums[1]);
   else {
-    
+    return Math.max(
+      rob(nums.slice(0, nums.length - 1)),
+      rob(nums.slice(0, nums.length - 2)) + nums[nums.length - 1],
+    );
   }
-  return 0;
 }
 
 console.log(rob([2, 7, 9, 3, 1]));
