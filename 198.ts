@@ -21,7 +21,7 @@ function rob2(nums: number[]): number {
     } else {
       const pmax1 = max1, pmax2 = max2;
       max1 = pmax2 + nums[i];
-      max2 = pmax1;
+      max2 = Math.max(pmax1, pmax2);
     }
     // console.log(max1, max2);
   }
