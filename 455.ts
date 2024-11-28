@@ -3,6 +3,21 @@
 
 function findContentChildren(g: number[], s: number[]): number {
   const maxS = Math.max(...s);
-  const newG = g.filter((num) => num <= maxS);
-  return 0;
+  g = g.filter((num) => num <= maxS);
+  s.sort((a, b) => b - a);
+  g.sort((a, b) => b - a);
+  // console.log(s);
+  // console.log(g);
+  let result = 0;
+  for (let sIndex = 0, gIndex = 0; gIndex < g.length; gIndex++) {
+    const sCurrent = s[sIndex];
+    const gCurrent = g[gIndex];
+    if (sCurrent >= gCurrent) {
+      sIndex++;
+      result++;
+    }
+  }
+  return result;
 }
+
+console.log(findContentChildren([1, 2, 3], [1, 1]));
