@@ -4,4 +4,10 @@ const fn = (v: boolean) => {
   else return '2';
 }
 
-type a = ReturnType<typeof fn>;
+type MyFunction = (...args: any[]) => any;
+
+type MyReturnType<T extends MyFunction> = T extends (...args: any[]) => infer R ?
+  R :
+  never;
+
+type a = MyReturnType<typeof fn>;
