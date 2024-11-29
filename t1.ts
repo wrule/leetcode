@@ -16,4 +16,12 @@ type MyAwaited<T> = T extends Promise<infer R> ? R : never;
 
 type b = MyAwaited<Promise<string>>;
 
+const fn2 = (a: number, b: string, c: boolean) => {
+  return Symbol.for('jimao');
+};
 
+type MyParameters<T extends MyFunction> = T extends (...args: infer R) => any ?
+  R :
+  never;
+
+type c = MyParameters<typeof fn2>;
