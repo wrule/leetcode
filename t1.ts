@@ -11,3 +11,9 @@ type MyReturnType<T extends MyFunction> = T extends (...args: any[]) => infer R 
   never;
 
 type a = MyReturnType<typeof fn>;
+
+type MyAwaited<T> = T extends Promise<infer R> ? R : never;
+
+type b = MyAwaited<Promise<string>>;
+
+
