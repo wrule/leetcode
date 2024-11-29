@@ -25,3 +25,11 @@ type MyParameters<T extends MyFunction> = T extends (...args: infer R) => any ?
   never;
 
 type c = MyParameters<typeof fn2>;
+
+type MyField<T extends { a: string | number | boolean }> = T extends { a: infer R } ? R : never;
+
+const object = {
+  a: 123,
+};
+
+type d = MyField<typeof object>;
