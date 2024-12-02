@@ -22,7 +22,7 @@ interface Todo {
 }
 
 type MyOmit<T, K extends keyof T> = {
-  [P in Exclude<keyof T, K>]: T[P];
-}
+  [P in Exclude<keyof T, K>]: T[P]
+};
 
-type A = Omit<Todo, 'title'>;
+type A = MyOmit<Todo, 'title'>;
