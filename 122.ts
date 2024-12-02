@@ -12,3 +12,17 @@ function maxProfit(prices: number[]): number {
 }
 
 console.log(maxProfit([7,1,5,3,6,4]));
+
+// TS每日一题
+
+interface Todo {
+  title: string;
+  description: string;
+  completed: boolean;
+}
+
+type MyOmit<T, K extends keyof T> = {
+  [P in Exclude<keyof T, K>]: T[P];
+}
+
+type A = Omit<Todo, 'title'>;
