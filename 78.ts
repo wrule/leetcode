@@ -5,5 +5,8 @@
 // 解集 不能 包含重复的子集。你可以按 任意顺序 返回解集。
 
 function subsets(nums: number[]): number[][] {
-  return [];
+  const result = [[]];
+  return result;
 }
+
+console.log(subsets([1, 2, 3]));
