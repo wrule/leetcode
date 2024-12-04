@@ -5,8 +5,8 @@
 // 解集 不能 包含重复的子集。你可以按 任意顺序 返回解集。
 
 function subsets(nums: number[]): number[][] {
-  const result = [[]];
-  return result;
+  return Array.from({ length: Math.pow(2, nums.length) })
+    .map((_, i) => nums.filter((_, j) => i >> j & 1));
 }
 
 console.log(subsets([1, 2, 3]));
