@@ -1,26 +1,14 @@
-// 1. 首先处理 data 返回值的类型
-type GetData<T> = T extends { data(): any } 
-  ? ReturnType<T['data']> 
+type GetDataType<T> = T extends { data: () => any }
+  ? ReturnType<T['data']>
   : never;
 
-// 2. 处理 this 的类型，它应该包含 data 返回的所有属性
-type GetComputed<T> = T extends { computed: any }
+type GetComputedType<T> = T extends { computed: any }
   ? {
       [K in keyof T['computed']]: ReturnType<T['computed'][K]>
     }
-  : {};
+  : never;
 
-// 3. 合并 data 和 computed 的类型，作为 this 的类型
-type VueThis<T> = GetData<T> & GetComputed<T>;
-
-// 4. 处理 methods 的类型
-type GetMethods<T> = T extends { methods: any }
-  ? {
-      [K in keyof T['methods']]: T['methods'][K] extends (this: any, ...args: infer A) => infer R
-        ? (this: void, ...args: A) => R
-        : T['methods'][K]
-    }
-  : {};
+type VueThis<T> = GetDataType<T> & GetComputedType<T>;
 
 // 5. 主类型定义
 type Options<D, C, M> = {
