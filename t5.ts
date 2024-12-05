@@ -1,28 +1,32 @@
 type GetDataType<T> = T extends { data: () => any }
   ? ReturnType<T['data']>
-  : never;
+  : { };
 
 type GetComputedType<T> = T extends { computed: any }
   ? {
       [K in keyof T['computed']]: ReturnType<T['computed'][K]>
     }
-  : never;
+  : { };
 
-type VueThis<T> = GetDataType<T> & GetComputedType<T>;
+type GetMethodsType<T> = T extends { methods: any }
+  ? {
+      [K in keyof T['methods']]: T['methods'][K] extends (this: any, ...args: infer A) => infer R
+        ? (this: void, ...args: A) => R
+        : T['methods'][K]
+    }
+  : {};
 
-// 5. 主类型定义
-type Options<D, C, M> = {
+
+type Options<D, C> = {
   data?: () => D,
   computed?: C & ThisType<D>,
-  methods?: M & ThisType<D & GetComputed<{ computed: C }>>
 }
 
 // 6. 最终的 SimpleVue 函数类型
 function SimpleVue<
   D,
   C extends Record<string, any>,
-  M extends Record<string, any>
->(options: Options<D, C, M>) {
+>(options: Options<D, C>) {
   return options;
 }
 
@@ -39,9 +43,4 @@ const instance = SimpleVue({
       return this.firstname + ' ' + this.lastname
     }
   },
-  methods: {
-    hi() {
-      alert(this.fullname.toLowerCase())
-    }
-  }
 })
