@@ -8,12 +8,15 @@
 
 declare const config: Chainable;
 
-type Chainable = {
-  option: () => Chainable;
-  get: () => void;
+type Chainable<T = {}> = {
+  option<K extends string, V>(
+    key: K extends keyof T ? never : K, // 防止重复key
+    value: V
+  ): Chainable<T & { [P in K]: V }>; // 合并新的键值对到现有类型
+  get(): T;
 }
 
-const result = config
+const result2 = config.option('1', 1)
   .option('foo', 123)
   .option('name', 'type-challenges')
   .option('bar', { value: 'Hello World' })
