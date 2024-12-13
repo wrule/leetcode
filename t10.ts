@@ -16,6 +16,16 @@ type Chainable<T extends object = { }> = {
   get(): T;
 }
 
+
+type Chainable2<T extends object = { }> = {
+  option<K extends string, V>(
+    key: K extends keyof T  ? never : K,
+    value: V,
+  ): Chainable<Omit<T, K> & { [P in K]: V }>;
+
+  get(): T;
+};
+
 const q = config.get();
 
 const result2 = config.option('1', 1)
