@@ -8,13 +8,15 @@
 
 declare const config: Chainable;
 
-type Chainable<T = {}> = {
+type Chainable<T extends object = { }> = {
   option<K extends string, V>(
-    key: K extends keyof T ? never : K, // 防止重复key
+    key: K extends keyof T ? never : K,
     value: V
-  ): Chainable<T & { [P in K]: V }>; // 合并新的键值对到现有类型
+  ): Chainable<T & { [P in K]: V }>;
   get(): T;
 }
+
+const q = config.get();
 
 const result2 = config.option('1', 1)
   .option('foo', 123)
