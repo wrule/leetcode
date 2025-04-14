@@ -16,7 +16,6 @@ function merge(nums1: number[], m: number, nums2: number[], n: number): any {
     m++;
   });
   nums1.splice(m, Infinity);
-  console.log(nums1);
 }
 
 console.log(merge([1,2,3,0,0,0], 3, [2,5,6], 3));
